@@ -7,24 +7,21 @@ let timeReduce = 10;
 let evolution = 0; 
 
 // ------------------------- Cached DOM Elements ------------------------- //
-// Elements from the DOM that we have not set reference to in JS
 
-//buttons
+// start button
 const startButton = document.getElementById('start'); 
-
+// play buttons
 const feedButton = document.getElementById('feed');
 const playButton = document.getElementById('play');
 const napButton = document.getElementById('nap');
-
-
 // star Uls
 const hungerStarsUL = document.getElementById('hungerStars');
 const boredomStarsUL = document.getElementById('boredomStars');
 const sleepStarsUL = document.getElementById('sleepinessStars');
-const need = [];
+// needs prompt
+const needs = ['food', 'playtime', 'sleep'];
 
 // ------------------------- Add Stars OnClick ------------------------- //
-
 
 function addHungerStar() {
     const newHungerStar = document.createElement('li');
@@ -48,4 +45,14 @@ function addSleepStar() {
 }; napButton.addEventListener('click', addSleepStar);
 
 // -------------------------  Random Need Generator ------------------------- //
+
+function generateRandomNeed () {
+    const randomNumber = Math.floor(Math.random()*3);  
+    const randomNeed = needs[randomNumber];
+    //alert(`Tamagotchi needs ${randomNeed}`);
+    // set this to a timer 
+}; generateRandomNeed();
+
+// -------------------------  Random Need Timer ------------------------- //
+
 
