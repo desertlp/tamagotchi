@@ -3,45 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+
     <script defer src="app.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="main.css">
+  
     <title>Tamagotchi</title>
+
 </head>
 <body>
 
     <h1>Tamagotchi</h1>
     
-    <header class ="info">
-        <h2>Name: Harold</h2>
-        <h3>Age: 0</h3>
-        <h3>Evolution: 0</h3>
-    </header>
+    <button id="start">Start</button>
+    
+    <section id="game-play">
 
-    <section class='stats'>
+        <header class ="info">
+            <h2>Name: Harold</h2>
+            <h3>Age: 0</h3>
+            <h3>Evolution: 0</h3>
+        </header>
 
-        <div id='hunger'>
-            <ul> Hunger
-                <li><i class="fas fa-star"></i></li>
-        </div>
+        <section class='stats'>
 
-        <div id='boredom'>
-            <ul> Boredom
-                <li><i class="fas fa-star"></i></li>
-            </ul>
-        </div>
+            <ul id='hungerStars'>Hunger</ul>
+            <ul id='boredomStars'>Boredom</ul>
+            <ul id='sleepinessStars'>Sleepiness</ul>
 
-        <div id='sleepiness'>
-            <ul> Sleepiness
-                <li><i class="fas fa-star"></i></li>
-            </ul>
-        </div>
+        </section>
 
-    </section>
+        <section class="buttons">
+            <button id="feed">Feed</button>
+            <button id="play">Play</button>
+            <button id="nap">Nap</button>
+        </section>
 
-    <section class="buttons">
-        <button id="feed">Feed</button>
-        <button id="play">Play</button>
-        <button id="nap">Nap</button>
     </section>
 
     <footer>Date Last Accessed: 0/0/00 time 1:00 pm</footer>
