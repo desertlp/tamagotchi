@@ -3,28 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="main.css">
+    <script defer src="app.js"></script>
+    <title>Tamagotchi</title>
 </head>
 <body>
+
     <h1>Tamagotchi</h1>
-    <div class ="info">
+    
+    <header class ="info">
         <h2>Name: Harold</h2>
         <h3>Age: 0</h3>
         <h3>Evolution: 0</h3>
-    </div>
+    </header>
 
-    <div class="stats">
-        <ul>
-            <li id="hunger">Hunger</li>
-            <li id="boredom">Boredom</li>
-            <li id="sleepiness">Sleepiness</li>
-        </ul>
-    </div>
-    <div class="buttons">
+    <section class='stats'>
+
+        <div id='hunger'>
+            <ul> Hunger
+                <li><i class="fas fa-star"></i></li>
+        </div>
+
+        <div id='boredom'>
+            <ul> Boredom
+                <li><i class="fas fa-star"></i></li>
+            </ul>
+        </div>
+
+        <div id='sleepiness'>
+            <ul> Sleepiness
+                <li><i class="fas fa-star"></i></li>
+            </ul>
+        </div>
+
+    </section>
+
+    <section class="buttons">
         <button id="feed">Feed</button>
         <button id="play">Play</button>
         <button id="nap">Nap</button>
-    </div>
+    </section>
 
     <footer>Date Last Accessed: 0/0/00 time 1:00 pm</footer>
     
