@@ -29,6 +29,8 @@ const napButton = document.getElementById('nap');
 const hungerStarsUL = document.getElementById('hungerStars');
 const boredomStarsUL = document.getElementById('boredomStars');
 const sleepStarsUL = document.getElementById('sleepinessStars');
+// poop area
+const poops = document.querySelector('.poops');
 
 
 // ------------------------- Event Listeners ------------------------- //
@@ -46,7 +48,7 @@ function addBasicTamagotchiInfo() {
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
     evolutionH3.innerText = `Evolution: ${tamagotchi.evolution[0]}`;
-    //startTimers();
+    startTimers();
 }; 
 // ------------------------- Add Stars OnClick ------------------------- //
 
@@ -79,72 +81,82 @@ function generateRandomNeed () {
 
 // -------------------------  Timers ------------------------- //
 
-let time = 60; // 60 seconds
+let time = 30; // 30 seconds
 
 function startTimers() {
+    const timer = setInterval(function () { 
+        if (time > 0) { 
+            time--;
+            console.log(time);
+        } else {
+            clearInterval(timer); 
+        }
+        }, 1000) // log time every second
 
-    ///// Need Timer /////
     const needsTimer = setInterval(function () { 
         if (time > 0) { 
             time--;
             generateRandomNeed();
         } else {
-            clearInterval(timer); 
+            clearInterval(needsTimer); 
         }
         }, 10000) // generate a new need every 10 seconds
 
-
-    ///// Loose Stars Timer /////
     const looseStarsTimer = setInterval(function () { 
         if (time > 0) { 
             time--; 
             removeRandomStar();
         } 
         else {
-            clearInterval(timer); 
+            clearInterval(looseStarsTimer); 
         }
         }, 10000) // remove a random star every 10 seconds
        
-    ///// Poop Timer ///// 
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
             time--; 
             poop();
         } 
         else {
-            clearInterval(timer); 
+            clearInterval(poopTimer); 
         }
         }, 10000) // poop every 10 second        
      
-    ///// Birthday Timer /////     
     const bithdayTimer = setInterval(function () { 
         if (time > 0) { 
             time--; 
-            tamagotchi.age++; // add one year to age 
+            tamagotchi.age++; // increment age by 1 year
+            updateAge(); // add one year to age 
         } 
         else {
-            clearInterval(timer); 
+            clearInterval(bithdayTimer); 
         }
         }, 10000) //  add one year to age every 10 seconds
-
-    /// 
+            
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
             time--; 
         } 
         else {
             dieOfOldAge();
-            clearInterval(timer); 
+            clearInterval(dieOfOldAgeTimer); 
         }
         }, 30000) // die after 30 seconds
-
 }; 
+
+// ------------------------- Update Age ------------------------- //
+
+function updateAge () { 
+    ageH3.innerText = `Age: ${tamagotchi.age}`; // method chaining 
+};
 
 // -------------------------  Poop Function ------------------------- //
-// add element, image, to the page that is a picture of poop
+
 function poop() {
-    console.log('it pooped');
-}; 
+    const poop = document.createElement('img');
+    poop.setAttribute('src', 'https://cdn.theatlantic.com/thumbor/_Je_YnGbWz6w4aolQWyuTyl05FE=/0x250:4874x2992/720x405/media/img/mt/2018/02/GettyImages_916017408/original.jpg');
+    poops.appendChild(poop);
+};  
 
 // -------------------------  Clean Up Poop Function ------------------------- //
 
@@ -160,6 +172,30 @@ function removeRandomStar() {
 
 function dieOfOldAge() {
     console.log('he died of natural causes')
+    // clear the screen, game over
 };
 
-//git commit -m "timers: need, poop, loose star, die"
+// -------------------------  Evolve ------------------------- //
+
+// // /// evolve
+
+// // time = 10 
+// // he is fed, played with, and has slept 
+// // there is no poop on the screen 
+
+
+// const evolveTimer = setInterval(function () { 
+//     if (time > 0) { 
+//         time--; 
+//         tamagotchi.evolution[i++]; // move to next index
+//         evolve(); // add index to evolution 
+//     } 
+//     else {
+//         clearInterval(timer); 
+//     }
+//     }, 5000) //  got to the next evolution stage every 5 seconds
+
+
+//     function evolve () { 
+//         evolutionH3.innerText = `Evolution: ${tamagotchi.evolution[i]}`; // method chaining 
+//     };
