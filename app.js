@@ -39,6 +39,7 @@ startButton.addEventListener('click', addBasicTamagotchiInfo);
 feedButton.addEventListener('click', addHungerStar);
 playButton.addEventListener('click', addBoredomStar);
 napButton.addEventListener('click', addSleepStar);
+poops.addEventListener('click', cleanPoop);
 
 // ------------------------- Name Your Tamagotchi  ------------------------- //
 function addBasicTamagotchiInfo() {
@@ -50,6 +51,7 @@ function addBasicTamagotchiInfo() {
     evolutionH3.innerText = `Evolution: ${tamagotchi.evolution[0]}`;
     startTimers();
 }; 
+
 // ------------------------- Add Stars OnClick ------------------------- //
 
 function addHungerStar() {
@@ -70,6 +72,7 @@ function addSleepStar() {
     newSleepinessStar.className = 'sleepiness-star';
     sleepStarsUL.appendChild(newSleepinessStar);
 }; 
+
 // -------------------------  Random Need Generator ------------------------- //
 
 function generateRandomNeed () {
@@ -154,14 +157,18 @@ function updateAge () {
 
 function poop() {
     const poop = document.createElement('img');
+    poop.classList = 'made-some-poops';
     poop.setAttribute('src', 'https://cdn.theatlantic.com/thumbor/_Je_YnGbWz6w4aolQWyuTyl05FE=/0x250:4874x2992/720x405/media/img/mt/2018/02/GettyImages_916017408/original.jpg');
     poops.appendChild(poop);
-};  
+};
 
 // -------------------------  Clean Up Poop Function ------------------------- //
 
-// remove element, image, from the page that is a picture of poop
-//  cleanPoop();
+function cleanPoop (event) {
+    if (event.target.classList.contains('made-some-poops')) {
+    poops.removeChild(event.target);
+    }
+};
 
 // -------------------------  removeRandomStar ------------------------- //
 function removeRandomStar() {
