@@ -1,9 +1,10 @@
 Steps
 
 1. Click play
-2. Name Tamagatchi
-3. Display main gamplay page
-4. Start timer
+    2. Name Tamagatchi 
+    2. hatch it 
+    3. Display main gamplay page
+    4. Start timer
 5. Every 5 seconds, Tamagatchi requires some sort of attention, via an alert.
     a. feed
     b. play
@@ -18,4 +19,42 @@ Steps
 6. If all stars/bar at 5/5, evolve
     a. Egg > baby > teenager > adult > old > die of old age 
 7. If any bars/stars reach 0, tamagatchi dies
+8. eventually dies of old age 
+
+
+
+///////////
+
+Tuesday: 
+- If any bars/stars reach 0, tamagatchi dies
+- If all stars/bar at 5/5, evolve
+    a. Egg > baby > teenager > adult > old > die of old age 
+    - does this need to be a class? 
+- Wireframe with alex 
+
+///////////
+
+Wednesday:
+
+
+CSS
+    - cover/ welcome page 
+    - tamagotchi screen
+
+
+///////////
+
+Thursday:
+
+JS bells and whistles 
+animation 
+
+
+///////////
+
+Friday:
+
+DRY
+Officially set timer intervals 
+
 

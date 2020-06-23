@@ -4,7 +4,7 @@ const tamagotchi = {
     name: '', // from the prompt 
     age: 0,
     needs: ['food', 'playtime', 'sleep'],
-    evolution: ['Egg', 'Teenager', 'Adult', 'Eldery'],
+    evolution: 'Egg',
     evolve () {
         // evolves when all star bars reach 5 at the same time 
     }
@@ -18,7 +18,6 @@ const userInputName = document.querySelector('input');
 const nameH2 = document.getElementById('name');
 const ageH3 = document.getElementById('age');
 const evolutionH3 = document.getElementById('evolution');
-
 //game console
 const gameConsole = document.querySelector('.game-console');
 // play buttons
@@ -32,10 +31,6 @@ let randomStatArr = [];
 const hungerStarsUL = document.getElementById('hungerStars');
 const boredomStarsUL = document.getElementById('boredomStars');
 const sleepStarsUL = document.getElementById('sleepinessStars');
-// star ULs Lengths 
-let hungerStarsULength = hungerStarsUL.children.length;
-let boredomStarsULength = boredomStarsUL.children.length;
-let sleepStarsULength = sleepStarsUL.children.length;
 // poop area
 const poops = document.querySelector('.poops');
 
@@ -57,7 +52,7 @@ function addBasicTamagotchiInfo() {
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
-    evolutionH3.innerText = `Evolution: ${tamagotchi.evolution[0]}`;
+    evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
     startTimers();
 }; 
 
@@ -93,13 +88,15 @@ function generateRandomNeed () {
 
 // -------------------------  Timers ------------------------- //
 
-let time = 30; // 30 seconds
+let time = 60; // 30 seconds
 
 function startTimers() {
     const timer = setInterval(function () { 
         if (time > 0) { 
             time--;
-            console.log(time);
+            console.log(time);           
+            dieOfNeglect(time);
+            
         } else {
             clearInterval(timer); 
         }
@@ -139,6 +136,7 @@ function startTimers() {
             time--; 
             tamagotchi.age++; // increment age by 1 year
             updateAge(); // add one year to age 
+            evolve(updateAge);
         } 
         else {
             clearInterval(bithdayTimer); 
@@ -153,8 +151,10 @@ function startTimers() {
             dieOfOldAge();
             clearInterval(dieOfOldAgeTimer); 
         }
-        }, 30000) // die after 30 seconds 
+        }, 60000) // die after 30 seconds 
 }; 
+
+
 
 // ------------------------- Update Age ------------------------- //
 
@@ -197,40 +197,85 @@ function dieOfOldAge() {
     // clear the screen, game over
 };
 
+// -------------------------  Evolve ------------------------- //
+
+
+function evolve (updateAge) {     
+    
+    if (tamagotchi.age > 5) {
+        tamagotchi.evolution = 'Decrepit';
+    } else if (tamagotchi.age >= 4) {
+        tamagotchi.evolution = 'Elderyl';
+    } else if (tamagotchi.age >= 3) {
+        tamagotchi.evolution = 'Adult';
+    } else if (tamagotchi.age >= 2) {
+        tamagotchi.evolution = 'Teenager';
+    } else (tamagotchi.age = 1) 
+        tamagotchi.evolution = 'Baby';
+
+    evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
+};
+
+
+
+
+
+
+//     if (tamagotchi.age = 1 ) {
+//         tamagotchi.evolution = 'Baby';
+//     } else if (tamagotchi.age = 2) {
+//         tamagotchi.evolution = 'Teenager';
+//     } else if (tamagotchi.age = 3) {
+//         tamagotchi.evolution = 'Adult';
+//     } else if (tamagotchi.age = 4) {
+//         tamagotchi.evolution = 'Elderly';
+//     } else (tamagotchi.age > 5) 
+//         tamagotchi.evolution = 'Decrepit';
+
+// };
+
+
 // -------------------------  Die of Neglect  ------------------------- //
 
 function dieOfNeglect() {
-    for (let i = time; i > time; time--){
-        if (hungerStarsULength < 1 || boredomStarsULength < 1 || sleepStarsULength < 1) {
-            console.log('died')
-        } else {
-            return;
-        }
+
+    let hungerStarsULength = hungerStarsUL.children.length;
+    let boredomStarsULength = boredomStarsUL.children.length;
+    let sleepStarsULength = sleepStarsUL.children.length;
+
+    if (hungerStarsULength < 1 || boredomStarsULength < 1 || sleepStarsULength < 1) {
+        console.log('died');
+        time = 0;
+        alert('you neglected your tamagotchi so he died');
+    } else {
+        return;
     }
 };
-dieOfNeglect();
 
 
-// -------------------------  Evolve ------------------------- //
+// // ------------------------- Update Age ------------------------- //
 
-// // /// evolve
+// function updateAge () { 
+//     ageH3.innerText = `Age: ${tamagotchi.age}`; // method chaining 
+// };
+// // // /// evolve
 
-// // time = 10 
-// // he is fed, played with, and has slept 
-// // there is no poop on the screen 
-
-
-// const evolveTimer = setInterval(function () { 
-//     if (time > 0) { 
-//         tamagotchi.evolution[i++]; // move to next index
-//         evolve(); // add index to evolution 
-//     } 
-//     else {
-//         clearInterval(timer); 
-//     }
-//     }, 5000) //  got to the next evolution stage every 5 seconds
+// // // time = 10 
+// // // he is fed, played with, and has slept 
+// // // there is no poop on the screen 
 
 
-//     function evolve () { 
-//         evolutionH3.innerText = `Evolution: ${tamagotchi.evolution[i]}`; // method chaining 
-//     };
+// // const evolveTimer = setInterval(function () { 
+// //     if (time > 0) { 
+// //         tamagotchi.evolution[i++]; // move to next index
+// //         evolve(); // add index to evolution 
+// //     } 
+// //     else {
+// //         clearInterval(timer); 
+// //     }
+// //     }, 5000) //  got to the next evolution stage every 5 seconds
+
+
+// //     function evolve () { 
+// //         evolutionH3.innerText = `Evolution: ${tamagotchi.evolution[i]}`; // method chaining 
+// //     };
