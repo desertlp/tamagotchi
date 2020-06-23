@@ -26,14 +26,20 @@ const feedButton = document.getElementById('feed');
 const playButton = document.getElementById('play');
 const napButton = document.getElementById('nap');
 // stats section 
-const statsSection = document.querySelector('.stats');
-const randomStatArr = [];
+let statsSection = document.querySelector('.stats');
+let randomStatArr = [];
 // star Uls
 const hungerStarsUL = document.getElementById('hungerStars');
 const boredomStarsUL = document.getElementById('boredomStars');
 const sleepStarsUL = document.getElementById('sleepinessStars');
+// star ULs Lengths 
+// let hungerStarsULength = hungerStarsUL.children.length;
+// let boredomStarsULength = boredomStarsUL.children.length;
+// let sleepStarsULength = sleepStarsUL.children.length;
 // poop area
+
 const poops = document.querySelector('.poops');
+
 
 
 // ------------------------- Event Listeners ------------------------- //
@@ -44,7 +50,8 @@ playButton.addEventListener('click', addBoredomStar);
 napButton.addEventListener('click', addSleepStar);
 poops.addEventListener('click', cleanPoop);
 
-// ------------------------- Name Your Tamagotchi  ------------------------- //
+// ------------------------- Start Game ------------------------- //
+
 function addBasicTamagotchiInfo() {
     const userInputNameValue = document.querySelector('input').value;    
     nameH2.innerText = `Name: ${userInputNameValue}`;
@@ -81,7 +88,7 @@ function addSleepStar() {
 function generateRandomNeed () {
     const randomNumber = Math.floor(Math.random()*3);  
     const randomNeed = tamagotchi.needs[randomNumber];
-    alert(`Tamagotchi needs ${randomNeed}`);
+    console.log(`Tamagotchi needs ${randomNeed}`);
     // set this to a timer 
 }; 
 
@@ -116,7 +123,7 @@ function startTimers() {
         else {
             clearInterval(looseStarsTimer); 
         }
-        }, 10000) // remove a random star every 10 seconds
+        }, 5000) // remove a random star every 5 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -148,6 +155,20 @@ function startTimers() {
             clearInterval(dieOfOldAgeTimer); 
         }
         }, 30000) // die after 30 seconds
+
+    const checkLifeTimer = setInterval(function () { 
+        if (time > 0) { 
+            time--; 
+        while (time > 0) {
+            dieOfNeglect();
+            time--; 
+        }    
+        } 
+        else {
+            clearInterval(checkLifeTimer); 
+        }
+        }, 30000) // die after 30 seconds
+
 }; 
 
 // ------------------------- Update Age ------------------------- //
@@ -173,29 +194,16 @@ function cleanPoop (event) {
     }
 };
 
-// -------------------------  Random Star Element Selector ------------------------- //
-
-
-function generateRandomStat () {
-
-}; generateRandomStat ();
-
 // -------------------------  Star Remover ------------------------- //
 
 function removeRandomStar() {
 
     const randomNumber = Math.floor(Math.random()*3);  
     const randomStat = statsSection.children[randomNumber];
-    randomStatArr.push(randomStat.children)
-    const randomNumberStatArr = Math.floor(Math.random()*(randomStatArr.length));
-    const randomStatStar = randomStatArr[randomNumberStatArr];
+    const randomStatStar = randomStat.firstElementChild;
     console.log(randomStatStar);
-
-        // remove randomStatStar
-    
-
-    //console.log('removed a star');
-}; removeRandomStar();
+    randomStat.removeChild(randomStatStar);
+}; 
 
 // -------------------------  Die of Old Age  ------------------------- //
 
@@ -204,7 +212,35 @@ function dieOfOldAge() {
     // clear the screen, game over
 };
 
+// -------------------------  Die of Neglect  ------------------------- //
+
+let hungerStarsULength = hungerStarsUL.children.length;
+    console.log(hungerStarsULength);
+let boredomStarsULength = boredomStarsUL.children.length;
+    console.log(boredomStarsULength);
+let sleepStarsULength = sleepStarsUL.children.length;
+    console.log(sleepStarsULength);
+
+    function dieOfNeglect() {
+        while(time > 0){
+            if (hungerStarsULength < 1 || boredomStarsULength < 1 || sleepStarsULength < 1) {
+                console.log('he died due to neglect');
+                // clear scree, game over
+            } else {
+                return;
+            }
+        }
+    }; 
+
+    
+
+
+
+
+
 // -------------------------  Evolve ------------------------- //
+
+
 
 // // /// evolve
 
@@ -215,7 +251,6 @@ function dieOfOldAge() {
 
 // const evolveTimer = setInterval(function () { 
 //     if (time > 0) { 
-//         time--; 
 //         tamagotchi.evolution[i++]; // move to next index
 //         evolve(); // add index to evolution 
 //     } 
