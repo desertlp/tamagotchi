@@ -33,11 +33,10 @@ const hungerStarsUL = document.getElementById('hungerStars');
 const boredomStarsUL = document.getElementById('boredomStars');
 const sleepStarsUL = document.getElementById('sleepinessStars');
 // star ULs Lengths 
-// let hungerStarsULength = hungerStarsUL.children.length;
-// let boredomStarsULength = boredomStarsUL.children.length;
-// let sleepStarsULength = sleepStarsUL.children.length;
+let hungerStarsULength = hungerStarsUL.children.length;
+let boredomStarsULength = boredomStarsUL.children.length;
+let sleepStarsULength = sleepStarsUL.children.length;
 // poop area
-
 const poops = document.querySelector('.poops');
 
 
@@ -154,21 +153,7 @@ function startTimers() {
             dieOfOldAge();
             clearInterval(dieOfOldAgeTimer); 
         }
-        }, 30000) // die after 30 seconds
-
-    const checkLifeTimer = setInterval(function () { 
-        if (time > 0) { 
-            time--; 
-        while (time > 0) {
-            dieOfNeglect();
-            time--; 
-        }    
-        } 
-        else {
-            clearInterval(checkLifeTimer); 
-        }
-        }, 30000) // die after 30 seconds
-
+        }, 30000) // die after 30 seconds 
 }; 
 
 // ------------------------- Update Age ------------------------- //
@@ -214,33 +199,19 @@ function dieOfOldAge() {
 
 // -------------------------  Die of Neglect  ------------------------- //
 
-let hungerStarsULength = hungerStarsUL.children.length;
-    console.log(hungerStarsULength);
-let boredomStarsULength = boredomStarsUL.children.length;
-    console.log(boredomStarsULength);
-let sleepStarsULength = sleepStarsUL.children.length;
-    console.log(sleepStarsULength);
-
-    function dieOfNeglect() {
-        while(time > 0){
-            if (hungerStarsULength < 1 || boredomStarsULength < 1 || sleepStarsULength < 1) {
-                console.log('he died due to neglect');
-                // clear scree, game over
-            } else {
-                return;
-            }
+function dieOfNeglect() {
+    for (let i = time; i > time; time--){
+        if (hungerStarsULength < 1 || boredomStarsULength < 1 || sleepStarsULength < 1) {
+            console.log('died')
+        } else {
+            return;
         }
-    }; 
-
-    
-
-
-
+    }
+};
+dieOfNeglect();
 
 
 // -------------------------  Evolve ------------------------- //
-
-
 
 // // /// evolve
 
