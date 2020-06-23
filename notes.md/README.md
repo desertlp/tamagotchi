@@ -26,10 +26,8 @@ Steps
 ///////////
 
 Tuesday: 
-- If any bars/stars reach 0, tamagatchi dies
-- If all stars/bar at 5/5, evolve
-    a. Egg > baby > teenager > adult > old > die of old age 
-    - does this need to be a class? 
+
+- Set max length stats to 10 
 - Wireframe with alex 
 
 ///////////

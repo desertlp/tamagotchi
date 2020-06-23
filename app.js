@@ -9,16 +9,17 @@ const tamagotchi = {
         // evolves when all star bars reach 5 at the same time 
     }
 };
+
 // ------------------------- Cached DOM Elements ------------------------- //
 
 // start button
 const startButton = document.querySelector('#start-button');
 const userInputName = document.querySelector('input'); 
-// name 
+// name, age, evolution stage
 const nameH2 = document.getElementById('name');
 const ageH3 = document.getElementById('age');
 const evolutionH3 = document.getElementById('evolution');
-//game console
+// game console
 const gameConsole = document.querySelector('.game-console');
 // play buttons
 const feedButton = document.getElementById('feed');
@@ -35,7 +36,6 @@ const sleepStarsUL = document.getElementById('sleepinessStars');
 const poops = document.querySelector('.poops');
 
 
-
 // ------------------------- Event Listeners ------------------------- //
 
 startButton.addEventListener('click', addBasicTamagotchiInfo); 
@@ -48,7 +48,7 @@ poops.addEventListener('click', cleanPoop);
 
 function addBasicTamagotchiInfo() {
     const userInputNameValue = document.querySelector('input').value;    
-    nameH2.innerText = `Name: ${userInputNameValue}`;
+    nameH2.innerText = `${userInputNameValue}`;
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
@@ -60,20 +60,17 @@ function addBasicTamagotchiInfo() {
 
 function addHungerStar() {
     const newHungerStar = document.createElement('li');
-    newHungerStar.innerText = '*';
-    newHungerStar.className = 'hunger-star';
+    newHungerStar.className = 'fas fa-ice-cream';
     hungerStarsUL.appendChild(newHungerStar);
 }; 
 function addBoredomStar() {
     const newBoredomStar = document.createElement('li');
-    newBoredomStar.innerText = '*';
-    newBoredomStar.className = 'boredom-star';
+    newBoredomStar.className = 'fas fa-basketball-ball';
     boredomStarsUL.appendChild(newBoredomStar);
 }; 
 function addSleepStar() {
     const newSleepinessStar = document.createElement('li');
-    newSleepinessStar.innerText = '*';
-    newSleepinessStar.className = 'sleepiness-star';
+    newSleepinessStar.className = 'fas fa-bed';
     sleepStarsUL.appendChild(newSleepinessStar);
 }; 
 
@@ -160,16 +157,19 @@ function updateAge () {
     ageH3.innerText = `Age: ${tamagotchi.age}`; // method chaining 
 };
 
-// -------------------------  Poop Function ------------------------- //
+// -------------------------  Poop ------------------------- //
 
 function poop() {
     const poop = document.createElement('img');
     poop.classList = 'made-some-poops';
     poop.setAttribute('src', 'https://cdn.theatlantic.com/thumbor/_Je_YnGbWz6w4aolQWyuTyl05FE=/0x250:4874x2992/720x405/media/img/mt/2018/02/GettyImages_916017408/original.jpg');
     poops.appendChild(poop);
+    if (poops.children.length > 1) {
+        alert('clean poop by clicking on it');
+    }
 };
 
-// -------------------------  Clean Up Poop Function ------------------------- //
+// -------------------------  Clean Up Poop ------------------------- //
 
 function cleanPoop (event) {
     if (event.target.classList.contains('made-some-poops')) {
@@ -212,10 +212,7 @@ function dieOfNeglect() {
     }
 };
 
-
-
 // -------------------------  Evolve ------------------------- //
-
 
 function evolve () {    
 
@@ -237,7 +234,6 @@ function evolve () {
 
 };
 
-
-
+// -------------------------  Animations ------------------------- //
 
 

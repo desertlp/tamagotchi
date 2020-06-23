@@ -7,6 +7,8 @@
     <script defer src="app.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.0-2/css/all.min.css" integrity="sha256-46r060N2LrChLLb5zowXQ72/iKKNiw/lAmygmHExk/o=" crossorigin="anonymous" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
   
     <title>Tamagotchi</title>
@@ -19,9 +21,7 @@
     <section class="game-console">
 
         <input type="text" placeholder='Name Your Tamagotchi'>
-        <button id="start-button">Get Started</button>
-
-        <span class="console-cover"></span>
+        <button id="start-button">start</button>
         
         <header class ="info">
             <h2 id="name"></h2>
@@ -29,21 +29,27 @@
             <h3 id="evolution"></h3>
         </header>
 
-        <section class='stats'>
+        <div class="screen">
+            <div class="creature-image"></div>  
+            <section class='stats'>
 
-            <ul id='hungerStars'>
-                <li class="hunger-star">h</li>
-            </ul>
-  
-            <ul id='boredomStars'>
-                <li class="boredom-star">b</li>
-            </ul>
+                <ul id='hungerStars'>
+                    <li class="fas fa-ice-cream"></li>
+                </ul>
+      
+                <ul id='boredomStars'>
+                    <li class="fas fa-basketball-ball"></li>
+                </ul>
+    
+    
+                <ul id='sleepinessStars'>
+                    <li class="fas fa-bed"></li>
+                </ul>
+    
+            </section>
 
-            <ul id='sleepinessStars'>
-                <li class="sleepiness-star">s</li>
-            </ul>
+        </div>
 
-        </section>
 
         <section class="buttons">
             <button id="feed">Feed</button>
@@ -55,7 +61,7 @@
 
     </section>
 
-    <footer>Date Last Accessed: 0/0/00 time 1:00 pm</footer>
+    <footer></footer>
     
 </body>
 </html>
