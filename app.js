@@ -25,6 +25,9 @@ const gameConsole = document.querySelector('.game-console');
 const feedButton = document.getElementById('feed');
 const playButton = document.getElementById('play');
 const napButton = document.getElementById('nap');
+// stats section 
+const statsSection = document.querySelector('.stats');
+const randomStatArr = [];
 // star Uls
 const hungerStarsUL = document.getElementById('hungerStars');
 const boredomStarsUL = document.getElementById('boredomStars');
@@ -170,10 +173,29 @@ function cleanPoop (event) {
     }
 };
 
-// -------------------------  removeRandomStar ------------------------- //
+// -------------------------  Random Star Element Selector ------------------------- //
+
+
+function generateRandomStat () {
+
+}; generateRandomStat ();
+
+// -------------------------  Star Remover ------------------------- //
+
 function removeRandomStar() {
-    console.log('removed a star');
-};
+
+    const randomNumber = Math.floor(Math.random()*3);  
+    const randomStat = statsSection.children[randomNumber];
+    randomStatArr.push(randomStat.children)
+    const randomNumberStatArr = Math.floor(Math.random()*(randomStatArr.length));
+    const randomStatStar = randomStatArr[randomNumberStatArr];
+    console.log(randomStatStar);
+
+        // remove randomStatStar
+    
+
+    //console.log('removed a star');
+}; removeRandomStar();
 
 // -------------------------  Die of Old Age  ------------------------- //
 
