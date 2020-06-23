@@ -96,6 +96,7 @@ function startTimers() {
             time--;
             console.log(time);           
             dieOfNeglect(time);
+            evolve();
             
         } else {
             clearInterval(timer); 
@@ -136,12 +137,11 @@ function startTimers() {
             time--; 
             tamagotchi.age++; // increment age by 1 year
             updateAge(); // add one year to age 
-            evolve(updateAge);
         } 
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 10000) //  add one year to age every 10 seconds
+        }, 5000) //  add one year to age every 10 seconds
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -153,8 +153,6 @@ function startTimers() {
         }
         }, 60000) // die after 30 seconds 
 }; 
-
-
 
 // ------------------------- Update Age ------------------------- //
 
@@ -197,44 +195,6 @@ function dieOfOldAge() {
     // clear the screen, game over
 };
 
-// -------------------------  Evolve ------------------------- //
-
-
-function evolve (updateAge) {     
-    
-    if (tamagotchi.age > 5) {
-        tamagotchi.evolution = 'Decrepit';
-    } else if (tamagotchi.age >= 4) {
-        tamagotchi.evolution = 'Elderyl';
-    } else if (tamagotchi.age >= 3) {
-        tamagotchi.evolution = 'Adult';
-    } else if (tamagotchi.age >= 2) {
-        tamagotchi.evolution = 'Teenager';
-    } else (tamagotchi.age = 1) 
-        tamagotchi.evolution = 'Baby';
-
-    evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
-};
-
-
-
-
-
-
-//     if (tamagotchi.age = 1 ) {
-//         tamagotchi.evolution = 'Baby';
-//     } else if (tamagotchi.age = 2) {
-//         tamagotchi.evolution = 'Teenager';
-//     } else if (tamagotchi.age = 3) {
-//         tamagotchi.evolution = 'Adult';
-//     } else if (tamagotchi.age = 4) {
-//         tamagotchi.evolution = 'Elderly';
-//     } else (tamagotchi.age > 5) 
-//         tamagotchi.evolution = 'Decrepit';
-
-// };
-
-
 // -------------------------  Die of Neglect  ------------------------- //
 
 function dieOfNeglect() {
@@ -253,29 +213,29 @@ function dieOfNeglect() {
 };
 
 
-// // ------------------------- Update Age ------------------------- //
 
-// function updateAge () { 
-//     ageH3.innerText = `Age: ${tamagotchi.age}`; // method chaining 
-// };
-// // // /// evolve
-
-// // // time = 10 
-// // // he is fed, played with, and has slept 
-// // // there is no poop on the screen 
+// -------------------------  Evolve ------------------------- //
 
 
-// // const evolveTimer = setInterval(function () { 
-// //     if (time > 0) { 
-// //         tamagotchi.evolution[i++]; // move to next index
-// //         evolve(); // add index to evolution 
-// //     } 
-// //     else {
-// //         clearInterval(timer); 
-// //     }
-// //     }, 5000) //  got to the next evolution stage every 5 seconds
+function evolve () {    
+
+    let currentAge = tamagotchi.age;
+
+    if (currentAge > 5) {
+        evolutionH3.innerText = `Evolution: Adult`;
+        // animation to adult 
+        // display new adult tamagotchi image
+    } else if (currentAge < 3) {
+        evolutionH3.innerText = `Evolution: Egg`;
+        // egg image should come from load
+    } else
+        evolutionH3.innerText = `Evolution: Baby`;
+          // animation to Baby 
+        // display new baby tamagotchi image
+
+};
 
 
-// //     function evolve () { 
-// //         evolutionH3.innerText = `Evolution: ${tamagotchi.evolution[i]}`; // method chaining 
-// //     };
+
+
+
