@@ -9,16 +9,17 @@ const tamagotchi = {
         // evolves when all star bars reach 5 at the same time 
     }
 };
+
 // ------------------------- Cached DOM Elements ------------------------- //
 
 // start button
 const startButton = document.querySelector('#start-button');
 const userInputName = document.querySelector('input'); 
-// name 
-const nameH2 = document.getElementById('name');
+// name, age, evolution stage
+const nameH3 = document.getElementById('name');
 const ageH3 = document.getElementById('age');
-const evolutionH3 = document.getElementById('evolution');
-//game console
+//const evolutionH3 = document.getElementById('evolution');
+// game console
 const gameConsole = document.querySelector('.game-console');
 // play buttons
 const feedButton = document.getElementById('feed');
@@ -35,7 +36,6 @@ const sleepStarsUL = document.getElementById('sleepinessStars');
 const poops = document.querySelector('.poops');
 
 
-
 // ------------------------- Event Listeners ------------------------- //
 
 startButton.addEventListener('click', addBasicTamagotchiInfo); 
@@ -48,11 +48,11 @@ poops.addEventListener('click', cleanPoop);
 
 function addBasicTamagotchiInfo() {
     const userInputNameValue = document.querySelector('input').value;    
-    nameH2.innerText = `Name: ${userInputNameValue}`;
+    nameH3.innerText = `${userInputNameValue}`;
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
-    evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
+    // evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
     startTimers();
 }; 
 
@@ -60,20 +60,17 @@ function addBasicTamagotchiInfo() {
 
 function addHungerStar() {
     const newHungerStar = document.createElement('li');
-    newHungerStar.innerText = '*';
-    newHungerStar.className = 'hunger-star';
+    newHungerStar.className = 'fas fa-ice-cream';
     hungerStarsUL.appendChild(newHungerStar);
 }; 
 function addBoredomStar() {
     const newBoredomStar = document.createElement('li');
-    newBoredomStar.innerText = '*';
-    newBoredomStar.className = 'boredom-star';
+    newBoredomStar.className = 'fas fa-basketball-ball';
     boredomStarsUL.appendChild(newBoredomStar);
 }; 
 function addSleepStar() {
     const newSleepinessStar = document.createElement('li');
-    newSleepinessStar.innerText = '*';
-    newSleepinessStar.className = 'sleepiness-star';
+    newSleepinessStar.className = 'fas fa-bed';
     sleepStarsUL.appendChild(newSleepinessStar);
 }; 
 
@@ -88,7 +85,7 @@ function generateRandomNeed () {
 
 // -------------------------  Timers ------------------------- //
 
-let time = 60; // 30 seconds
+let time = 120; // 2min 
 
 function startTimers() {
     const timer = setInterval(function () { 
@@ -96,7 +93,7 @@ function startTimers() {
             time--;
             console.log(time);           
             dieOfNeglect(time);
-            evolve();
+            // evolve();
             
         } else {
             clearInterval(timer); 
@@ -137,11 +134,12 @@ function startTimers() {
             time--; 
             tamagotchi.age++; // increment age by 1 year
             updateAge(); // add one year to age 
+            evolve();
         } 
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 5000) //  add one year to age every 10 seconds
+        }, 30000) //  add one year to age every 30 seconds
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -151,7 +149,7 @@ function startTimers() {
             dieOfOldAge();
             clearInterval(dieOfOldAgeTimer); 
         }
-        }, 60000) // die after 30 seconds 
+        }, 120000) // die after 2min  
 }; 
 
 // ------------------------- Update Age ------------------------- //
@@ -160,16 +158,19 @@ function updateAge () {
     ageH3.innerText = `Age: ${tamagotchi.age}`; // method chaining 
 };
 
-// -------------------------  Poop Function ------------------------- //
+// -------------------------  Poop ------------------------- //
 
 function poop() {
     const poop = document.createElement('img');
     poop.classList = 'made-some-poops';
     poop.setAttribute('src', 'https://cdn.theatlantic.com/thumbor/_Je_YnGbWz6w4aolQWyuTyl05FE=/0x250:4874x2992/720x405/media/img/mt/2018/02/GettyImages_916017408/original.jpg');
     poops.appendChild(poop);
+    if (poops.children.length > 1) {
+        alert('clean poop by clicking on it');
+    }
 };
 
-// -------------------------  Clean Up Poop Function ------------------------- //
+// -------------------------  Clean Up Poop ------------------------- //
 
 function cleanPoop (event) {
     if (event.target.classList.contains('made-some-poops')) {
@@ -212,32 +213,28 @@ function dieOfNeglect() {
     }
 };
 
-
-
 // -------------------------  Evolve ------------------------- //
-
 
 function evolve () {    
 
     let currentAge = tamagotchi.age;
 
     if (currentAge > 5) {
-        evolutionH3.innerText = `Evolution: Adult`;
+        alert('Evolution: Adult');
         // animation to adult 
         // display new adult tamagotchi image
     } else if (currentAge < 3) {
-        evolutionH3.innerText = `Evolution: Baby`;
+        alert(`Evolution: Baby`);
          // animation to Baby from egg on start 
             // display new baby tamagotchi image
 
     } else
-        evolutionH3.innerText = `Evolution: Teenager`;
+        alert(`Evolution: Teenager`);
           // animation to Baby 
         // display new baby tamagotchi image
 
 };
 
-
-
+// -------------------------  Animations ------------------------- //
 
 
