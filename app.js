@@ -20,6 +20,7 @@ const ageH3 = document.getElementById('age');
 //const evolutionH3 = document.getElementById('evolution');
 // game console
 const gameConsole = document.querySelector('.game-console');
+const animationScreen = document.querySelector('.animation-screen');
 // play buttons
 const feedButton = document.getElementById('feed');
 const playButton = document.getElementById('play');
@@ -69,10 +70,8 @@ function addBasicTamagotchiInfo() {
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
-    // hatch egg animation
-    startTimers();
-    
-    
+    hatchEgg();
+    setTimeout(startTimers, 5000);
 }; 
 
 // -------------------------  Timers ------------------------- //
@@ -109,7 +108,7 @@ function startTimers() {
         else {
             clearInterval(addRandomIconTimer); 
         }
-        }, 1000) // remove a random star every 5 seconds
+        }, 10000) // remove a random star every 10 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -131,7 +130,7 @@ function startTimers() {
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 30000) //  add one year to age every 30 seconds
+        }, 10000) //  add one year to age every 10 seconds
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -242,22 +241,75 @@ function evolve () {
 
     let currentAge = tamagotchi.age;
 
-    if (currentAge > 5) {
-        alert('Evolution: Adult');
-        // animation to adult 
+    if (currentAge > 5) { // adult
+        levelupAdult ();
         // display new adult tamagotchi image
-    } else if (currentAge < 3) {
-        alert(`Evolution: Baby`);
-         // animation to Baby from egg on start 
-            // display new baby tamagotchi image
+    } else if (currentAge < 3) { // baby
+        // display baby tamagotchi image
+    } else // teenager
+        levelupTeenager(); 
+        // display teenager tamagotchi image
+};
 
-    } else
-        alert(`Evolution: Teenager`);
-          // animation to Baby 
-        // display new baby tamagotchi image
+// ===================================== Evolve Animations =====================================//
+
+// -------------------------  Hatch ------------------------- //
+
+let eggHatchTime = 1;
+
+function hatchEgg () {
+
+    const hatchEggTimer = setInterval(function () { 
+        if (eggHatchTime > 0) { 
+            eggHatchTime--;          
+            animationScreen.src = "gifs/hatch.gif";
+        } else {
+            clearInterval(hatchEggTimer); 
+            animationScreen.src = "gifs/baby.gif";
+        }
+        }, 5000) // log every 5 seconds
 
 };
 
-// -------------------------  Animations ------------------------- //
 
 
+
+
+
+
+
+
+// -------------------------  Evolve to Teenager  ------------------------- //
+let levelUpTimeTeenager = 2;
+
+function levelupTeenager () {
+
+    const levelUpTimerTeenager = setInterval(function () { 
+        if (levelUpTimeTeenager > 0) { 
+            levelUpTimeTeenager--;          
+            animationScreen.src = "gifs/levelup.gif";
+        } else {
+            clearInterval(levelUpTimerTeenager); 
+            animationScreen.src = "gifs/teenage.gif";
+        }
+        }, 6000) // log every 3 seconds
+
+};
+
+// -------------------------  Evolve to Adult  ------------------------- //
+
+let levelUpTimeAdult = 2;
+
+function levelupAdult () {
+
+    const levelUpTimerAdult= setInterval(function () { 
+        if (levelUpTimeAdult > 0) { 
+            levelUpTimeAdult--;          
+            animationScreen.src = "gifs/levelup.gif";
+        } else {
+            clearInterval(levelUpTimerAdult); 
+            animationScreen.src = "gifs/adult.gif";
+        }
+        }, 6000) // log every 3 seconds
+
+};

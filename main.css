@@ -45,9 +45,13 @@ h1 {
     background-color: gray;
     width: 600px;
     height: 400px;
-    padding: 20px;
     margin: 0 auto;
     
+}
+
+.creature-image img{
+    width: 600px;
+    height: 400px;
 }
 
 .stats {
