@@ -28,10 +28,10 @@ const napButton = document.getElementById('nap');
 // stats section 
 let statsSection = document.querySelector('.stats');
 let randomStatArr = [];
-// star Uls
-const hungerStarsUL = document.getElementById('hungerStars');
-const boredomStarsUL = document.getElementById('boredomStars');
-const sleepStarsUL = document.getElementById('sleepinessStars');
+// Icon Uls
+let hungerIconsUL = document.getElementById('hungerStars');
+let boredomIconsUL = document.getElementById('boredomStars');
+let sleepIconsUL = document.getElementById('sleepinessStars');
 // poop area
 const poops = document.querySelector('.poops');
 
@@ -39,10 +39,27 @@ const poops = document.querySelector('.poops');
 // ------------------------- Event Listeners ------------------------- //
 
 startButton.addEventListener('click', addBasicTamagotchiInfo); 
-feedButton.addEventListener('click', addHungerStar);
-playButton.addEventListener('click', addBoredomStar);
-napButton.addEventListener('click', addSleepStar);
+feedButton.addEventListener('click', removeHungerIcon);
+playButton.addEventListener('click', removeBoredomIcon);
+napButton.addEventListener('click', removeSleepIcon);
 poops.addEventListener('click', cleanPoop);
+
+// ------------------------- Interactive Button Functionality ------------------------- //
+
+function removeHungerIcon (){
+    let hungerIcon = hungerIconsUL.firstElementChild;
+    hungerIconsUL.removeChild(hungerIcon);
+};
+
+function removeBoredomIcon () {
+    let boredomIcon = boredomIconsUL.firstElementChild;
+    boredomIconsUL.removeChild(boredomIcon);
+};
+
+function removeSleepIcon () {
+    let sleepIcon = sleepIconsUL.firstElementChild;
+    sleepIconsUL.removeChild(sleepIcon);
+};
 
 // ------------------------- Start Game ------------------------- //
 
@@ -52,35 +69,9 @@ function addBasicTamagotchiInfo() {
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
+    // hatch egg animation
     // evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
     startTimers();
-}; 
-
-// ------------------------- Add Stars OnClick ------------------------- //
-
-function addHungerStar() {
-    const newHungerStar = document.createElement('li');
-    newHungerStar.className = 'fas fa-ice-cream';
-    hungerStarsUL.appendChild(newHungerStar);
-}; 
-function addBoredomStar() {
-    const newBoredomStar = document.createElement('li');
-    newBoredomStar.className = 'fas fa-basketball-ball';
-    boredomStarsUL.appendChild(newBoredomStar);
-}; 
-function addSleepStar() {
-    const newSleepinessStar = document.createElement('li');
-    newSleepinessStar.className = 'fas fa-bed';
-    sleepStarsUL.appendChild(newSleepinessStar);
-}; 
-
-// -------------------------  Random Need Generator ------------------------- //
-
-function generateRandomNeed () {
-    const randomNumber = Math.floor(Math.random()*3);  
-    const randomNeed = tamagotchi.needs[randomNumber];
-    console.log(`Tamagotchi needs ${randomNeed}`);
-    // set this to a timer 
 }; 
 
 // -------------------------  Timers ------------------------- //
@@ -103,21 +94,21 @@ function startTimers() {
     const needsTimer = setInterval(function () { 
         if (time > 0) { 
             time--;
-            generateRandomNeed();
+            generateRandomNeedMessage();
         } else {
             clearInterval(needsTimer); 
         }
         }, 10000) // generate a new need every 10 seconds
 
-    const looseStarsTimer = setInterval(function () { 
+    const addRandomIconTimer = setInterval(function () { 
         if (time > 0) { 
             time--; 
-            removeRandomStar();
+            addRandomIcon();
         } 
         else {
-            clearInterval(looseStarsTimer); 
+            clearInterval(addRandomIconTimer); 
         }
-        }, 5000) // remove a random star every 5 seconds
+        }, 1000) // remove a random star every 5 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -152,6 +143,15 @@ function startTimers() {
         }, 120000) // die after 2min  
 }; 
 
+// -------------------------  Random Need Generator ------------------------- //
+
+function generateRandomNeedMessage () {
+    const randomNumber = Math.floor(Math.random()*3);  
+    const randomNeed = tamagotchi.needs[randomNumber];
+    console.log(`Tamagotchi needs ${randomNeed}`);
+    // make an animation that says something about being needy
+}; 
+
 // ------------------------- Update Age ------------------------- //
 
 function updateAge () { 
@@ -178,17 +178,39 @@ function cleanPoop (event) {
     }
 };
 
-// -------------------------  Star Remover ------------------------- //
+// ------------------------- Add Icons Function ------------------------- //
 
-function removeRandomStar() {
+function addHungerIcon() {
+    const newHungerIcon = document.createElement('li');
+    newHungerIcon.className = 'fas fa-ice-cream';
+    hungerIconsUL.appendChild(newHungerIcon);
+}; 
+function addBoredomIcon() {
+    const newBoredomIcon = document.createElement('li');
+    newBoredomIcon.className = 'fas fa-basketball-ball';
+    boredomIconsUL.appendChild(newBoredomIcon);
+}; 
+function addSleepIcon() {
+    const newSleepinessIcon = document.createElement('li');
+    newSleepinessIcon.className = 'fas fa-bed';
+    sleepIconsUL.appendChild(newSleepinessIcon);
+}; 
+
+// -------------------------  Random Icon Adder ------------------------- //
+
+function addRandomIcon() {
 
     const randomNumber = Math.floor(Math.random()*3);  
     const randomStat = statsSection.children[randomNumber];
-    const randomStatStar = randomStat.firstElementChild;
-    console.log(randomStatStar);
-    randomStat.removeChild(randomStatStar);
-}; 
+    const randomStatIcon = randomStat.firstElementChild;
+    if (randomStatIcon.className === 'fas fa-ice-cream') {
+        addHungerIcon();        
+    } else if (randomStatIcon.className === 'fas fa-basketball-ball') {
+        addBoredomIcon();
+    } else 
+        addSleepIcon();
 
+};
 // -------------------------  Die of Old Age  ------------------------- //
 
 function dieOfOldAge() {
@@ -200,11 +222,11 @@ function dieOfOldAge() {
 
 function dieOfNeglect() {
 
-    let hungerStarsULength = hungerStarsUL.children.length;
-    let boredomStarsULength = boredomStarsUL.children.length;
-    let sleepStarsULength = sleepStarsUL.children.length;
+    let hungerIconsULength = hungerIconsUL.children.length;
+    let boredomIconsULength = boredomIconsUL.children.length;
+    let sleepIconsULength = sleepIconsUL.children.length;
 
-    if (hungerStarsULength < 1 || boredomStarsULength < 1 || sleepStarsULength < 1) {
+    if (hungerIconsULength > 9 || boredomIconsULength > 9 || sleepIconsULength > 9) {
         console.log('died');
         time = 0;
         alert('you neglected your tamagotchi so he died');

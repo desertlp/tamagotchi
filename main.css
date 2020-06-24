@@ -37,8 +37,8 @@ h1 {
 
 .screen {
     background-color: white;
-    width: 900px;
-    height: 800px;
+    width: 850px;
+    height: 900px;
     margin: 450px auto 150px;
 }
 
@@ -52,7 +52,20 @@ h1 {
 }
 
 .stats {
+   
     padding: 40px;
+    display: flex;
+    flex-direction: column;
+    height: 200px;
+    padding: 10px 100px 60px 100px;
+}
+
+ul {
+    height: 200px;
+    padding: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 
 }
 
@@ -84,3 +97,4 @@ button {
     margin: 0 auto;
     background-color: hotpink;
 }
+
