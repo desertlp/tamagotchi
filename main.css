@@ -1,3 +1,4 @@
+
 body {
     background-color: pink;
     font-family: 'Rock Salt', sans-serif;
@@ -12,8 +13,6 @@ h1 {
     align-self: flex-end;
     margin-top: 300px;
     margin-right: 300px;
-    
-    
 }
 
 .info {
@@ -96,5 +95,9 @@ button {
     border-radius: 10px;
     margin: 0 auto;
     background-color: hotpink;
+}
+
+body.initial-hide .screen, body.initial-hide .buttons  {
+    display: none;
 }
 

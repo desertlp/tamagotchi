@@ -64,14 +64,16 @@ function removeSleepIcon () {
 // ------------------------- Start Game ------------------------- //
 
 function addBasicTamagotchiInfo() {
+    document.querySelector('.initial-hide').classList.remove('initial-hide');
     const userInputNameValue = document.querySelector('input').value;    
     nameH3.innerText = `${userInputNameValue}`;
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
     // hatch egg animation
-    // evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
     startTimers();
+    
+    
 }; 
 
 // -------------------------  Timers ------------------------- //
