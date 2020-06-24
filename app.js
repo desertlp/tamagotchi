@@ -16,9 +16,9 @@ const tamagotchi = {
 const startButton = document.querySelector('#start-button');
 const userInputName = document.querySelector('input'); 
 // name, age, evolution stage
-const nameH2 = document.getElementById('name');
+const nameH3 = document.getElementById('name');
 const ageH3 = document.getElementById('age');
-const evolutionH3 = document.getElementById('evolution');
+//const evolutionH3 = document.getElementById('evolution');
 // game console
 const gameConsole = document.querySelector('.game-console');
 // play buttons
@@ -48,11 +48,11 @@ poops.addEventListener('click', cleanPoop);
 
 function addBasicTamagotchiInfo() {
     const userInputNameValue = document.querySelector('input').value;    
-    nameH2.innerText = `${userInputNameValue}`;
+    nameH3.innerText = `${userInputNameValue}`;
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
-    evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
+    // evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
     startTimers();
 }; 
 
@@ -85,7 +85,7 @@ function generateRandomNeed () {
 
 // -------------------------  Timers ------------------------- //
 
-let time = 60; // 30 seconds
+let time = 120; // 2min 
 
 function startTimers() {
     const timer = setInterval(function () { 
@@ -93,7 +93,7 @@ function startTimers() {
             time--;
             console.log(time);           
             dieOfNeglect(time);
-            evolve();
+            // evolve();
             
         } else {
             clearInterval(timer); 
@@ -134,11 +134,12 @@ function startTimers() {
             time--; 
             tamagotchi.age++; // increment age by 1 year
             updateAge(); // add one year to age 
+            evolve();
         } 
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 5000) //  add one year to age every 10 seconds
+        }, 30000) //  add one year to age every 30 seconds
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -148,7 +149,7 @@ function startTimers() {
             dieOfOldAge();
             clearInterval(dieOfOldAgeTimer); 
         }
-        }, 60000) // die after 30 seconds 
+        }, 120000) // die after 2min  
 }; 
 
 // ------------------------- Update Age ------------------------- //
@@ -219,16 +220,16 @@ function evolve () {
     let currentAge = tamagotchi.age;
 
     if (currentAge > 5) {
-        evolutionH3.innerText = `Evolution: Adult`;
+        alert('Evolution: Adult');
         // animation to adult 
         // display new adult tamagotchi image
     } else if (currentAge < 3) {
-        evolutionH3.innerText = `Evolution: Baby`;
+        alert(`Evolution: Baby`);
          // animation to Baby from egg on start 
             // display new baby tamagotchi image
 
     } else
-        evolutionH3.innerText = `Evolution: Teenager`;
+        alert(`Evolution: Teenager`);
           // animation to Baby 
         // display new baby tamagotchi image
 
