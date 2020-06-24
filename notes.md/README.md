@@ -35,7 +35,7 @@ Tuesday:
 Wednesday:
 
 
-CSS
+Finish CSS
     - cover/ welcome page 
     - tamagotchi screen
 
