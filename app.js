@@ -11,7 +11,6 @@ const tamagotchi = {
 };
 
 // ------------------------- Cached DOM Elements ------------------------- //
-
 // start button
 const startButton = document.querySelector('#start-button');
 const userInputName = document.querySelector('input'); 

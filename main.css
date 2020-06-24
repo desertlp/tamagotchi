@@ -85,17 +85,40 @@ button {
 }
 
 #play {
-    margin-top: 90px;
+    margin-top: 100px;
 }
+
 
 #start-button {
     font-family: 'Rock Salt', sans-serif;
-    width: 200px;
-    height: 100px;
+    color: white;
+    font-weight: 10px;
+    width: 300px;
+    height: 150px;
     border-radius: 10px;
-    margin: 0 auto;
     background-color: hotpink;
+    margin-top: 800px;
+    
+
+
 }
+input {
+    font-family: 'Rock Salt', sans-serif;
+    width: 575px;
+    height: 150px;
+    border-radius: 10px;
+    background-color: white;
+    margin-top: 800px;
+    margin-left: 200px;
+    
+
+}
+
+
+
+
+
+
 
 body.initial-hide .screen, body.initial-hide .buttons  {
     display: none;
