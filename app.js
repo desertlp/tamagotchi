@@ -99,7 +99,7 @@ function startTimers() {
         if (time > 0) { 
             time--;
             //generateRandomNeedMessage();
-            playAudio();        
+            //playAudio();        
         } else {
             clearInterval(needsTimer); 
         }
@@ -233,6 +233,7 @@ function dieOfOldAge() {
     const deadGif  = document.createElement('img');
     deadGif.setAttribute('src', "gifs/ghost.gif");
     gameConsole.insertBefore(deadGif, gameConsole[1]);
+    time = 0;
     removeGameButtons();
     // alert('your tamagotchi passed away of natural causes due to old age');
 
@@ -285,7 +286,8 @@ let eggHatchTime = 1;
 function hatchEgg () {
     const hatchGif  = document.createElement('img');
     hatchGif.setAttribute('src', "gifs/hatch.gif");
-    gameConsole.insertBefore(hatchGif, gameConsole[1]);
+    hatchGif.setAttribute('class', 'gif');
+    gameConsole.insertBefore(hatchGif, gameConsole[0]);
     
     const hatchEggTimer = setInterval(function () { 
         if (eggHatchTime > 0) { 
