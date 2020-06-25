@@ -20,7 +20,7 @@ const ageH3 = document.getElementById('age');
 //const evolutionH3 = document.getElementById('evolution');
 // game console
 const gameConsole = document.querySelector('.game-console');
-const gifsScreen = document.querySelector('.gifs');
+// const gifsScreen = document.querySelector('.gifs');
 // play buttons
 const gameButtons = document.querySelector('.buttons');
 const feedButton = document.getElementById('feed');
@@ -113,7 +113,7 @@ function startTimers() {
         else {
             clearInterval(addRandomIconTimer); 
         }
-        }, 7000) // add a random stat every 7 seconds
+        }, 1000) // add a random stat every 7 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -172,7 +172,7 @@ function poop() {
     poop.setAttribute('src', 'poop.png');
     poops.appendChild(poop);
     if (poops.children.length > 3) {
-        alert('clean poop by clicking on it');
+        //alert('clean poop by clicking on it');
     }
 };
 
@@ -229,9 +229,12 @@ function removeGameButtons () {
 // -------------------------  Die of Old Age  ------------------------- //
 
 function dieOfOldAge() {
-    gifsScreen.src = "gifs/ghost.gif";
+
+    const deadGif  = document.createElement('img');
+    deadGif.setAttribute('src', "gifs/ghost.gif");
+    gameConsole.insertBefore(deadGif, gameConsole[1]);
     removeGameButtons();
-    alert('your tamagotchi passed away of natural causes due to old age');
+    // alert('your tamagotchi passed away of natural causes due to old age');
 
 };
 
@@ -244,10 +247,14 @@ function dieOfNeglect() {
     let sleepIconsULength = sleepIconsUL.children.length;
 
     if (hungerIconsULength > 9 || boredomIconsULength > 9 || sleepIconsULength > 9) {
-        gifsScreen.src = "gifs/ghost.gif";
+        const deadGif  = document.createElement('img');
+        deadGif.setAttribute('src', "gifs/ghost.gif");
+        gameConsole.insertBefore(deadGif, gameConsole[1]);
+        removeGameButtons();
+
         time = 0;
         removeGameButtons();
-        alert('you neglected your tamagotchi so he died');
+        // alert('you neglected your tamagotchi so he died');
     } else {
         return;
     }
@@ -276,14 +283,19 @@ function evolve () {
 let eggHatchTime = 1;
 
 function hatchEgg () {
+    const hatchGif  = document.createElement('img');
+    hatchGif.setAttribute('src', "gifs/hatch.gif");
+    gameConsole.insertBefore(hatchGif, gameConsole[1]);
     
     const hatchEggTimer = setInterval(function () { 
         if (eggHatchTime > 0) { 
-            eggHatchTime--;          
-            gifsScreen.src = "gifs/hatch.gif";
+            eggHatchTime--;     
+            // const hatchGif  = createElement('img');
+            // hatchGif.setAttribute('src', "gifs/hatch.gif");
+
         } else {
+            gameConsole.removeChild(hatchGif);
             clearInterval(hatchEggTimer); 
-            gifsScreen.src = "gifs/baby.gif";
         }
         }, 7000) // log every 5 seconds
 };
@@ -293,13 +305,17 @@ let levelUpTimeTeenager = 2;
 
 function levelupTeenager () {
 
+    const levelUpGif  = document.createElement('img');
+    levelUpGif.setAttribute('src', "gifs/levelup.gif");
+    gameConsole.insertBefore(levelUpGif, gameConsole[1]);
+    
     const levelUpTimerTeenager = setInterval(function () { 
         if (levelUpTimeTeenager > 0) { 
             levelUpTimeTeenager--;          
-            gifsScreen.src = "gifs/levelup.gif";
+     
         } else {
             clearInterval(levelUpTimerTeenager); 
-            gifsScreen.src = "gifs/teenage.gif";
+            gameConsole.removeChild(levelUpGif);
         }
         }, 6000) // log every 3 seconds
 
@@ -311,13 +327,16 @@ let levelUpTimeAdult = 2;
 
 function levelupAdult () {
 
+    const levelUpGif  = document.createElement('img');
+    levelUpGif.setAttribute('src', "gifs/levelup.gif");
+    gameConsole.insertBefore(levelUpGif, gameConsole[1]);
+
     const levelUpTimerAdult= setInterval(function () { 
         if (levelUpTimeAdult > 0) { 
             levelUpTimeAdult--;          
-            gifsScreen.src = "gifs/levelup.gif";
         } else {
             clearInterval(levelUpTimerAdult); 
-            gifsScreen.src = "gifs/adult.gif";
+            gameConsole.removeChild(levelUpGif);
         }
         }, 6000) // log every 3 seconds
 
