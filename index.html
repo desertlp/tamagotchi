@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="luna.css">
     
     <title>Tamagotchi</title>
 
@@ -20,12 +21,10 @@
     <h1>Tamagotchi</h1>
     
     <section class="game-console">
-
     
         <input type="text" placeholder='  Name Your Tamagotchi '>
         <button id="start-button">start</button>
     
-
         <div class="screen">
 
             <header class ="info">
@@ -34,20 +33,31 @@
             </header>
            
             <div class="animation-screen">
-                <div charWalking = "walking-animation">
-                    <div character class= "character-itself"></div>
-                        <div class ="character-body">
-                            <div class='eyes'>
-                                <div class= 'eye'></div>
-                                <div class= 'eye'></div>
+                <div class = "luna-animation">
+                        <div class="ears-wrapper">
+                          <div class="ears left"></div>
+                          <div class="ears right"></div>
+                        </div>
+                        <div class="luna">
+                          <div class="eyes left">
+                            <div class="eye-color left">
                             </div>
+                          </div>
+                          <div class="eyes right">
+                            <div class="eye-color right">
+                            </div>
+                          </div>
+                          <div class="moon"></div>
+                          <div class="nose"></div>
+                          <div class="mouth"></div>
+                          <div class="whiskas left"></div>
+                          <div class="whiskas right"></div>
                         </div>
                 </div>
+             </div>
 
-                <div class='poops'></div>
+            <div class='poops'></div>
 
-            
-            </div>  
             <section class='stats'>
 
                 <ul id='hungerStars'>
@@ -67,21 +77,20 @@
 
         </div>
 
-
         <section class="buttons">
-            <button id="feed">Feed</button>
-            <button id="play">Play</button>
-            <button id="nap">Nap</button>
+            <button id="feed" class="fas fa-ice-cream"></button>
+            <button id="play" class="fas fa-basketball-ball"></button>
+            <button id="nap" class="fas fa-bed"></button>
         </section>
-
-        
 
     </section>
 
     <footer></footer>
+
     <audio id="beep">
+
         <source src="sounds/beep.wav" type="audio/mpeg">
-      </audio>
+    </audio>
     
 </body>
 </html>

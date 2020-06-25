@@ -77,18 +77,22 @@ h1 {
 } */
 
 .poops {
-  
+    
     position: absolute;
     bottom: 0;
     opacity:80%;
     display: flex;
     flex-wrap: wrap;
     max-height: 400px;
+    animation: heartBeat 2s linear;
 }
 .made-some-poops {
     position: absolute;
     bottom: 0;
     flex-shrink: 3;
+    animation: heartBeat 2s linear;
+    
+
 }
 
 .stats {
@@ -114,19 +118,28 @@ ul {
     margin: 0 auto;
     display: flex;
     justify-content: space-evenly;
-
+    font-size: 60px;
+    color: white;
 }
+
 button {
     
     width: 150px;
     height: 150px;
     border-radius: 75px;
-    background-color: yellow;
+    background-color: rgb(253, 221, 102);
     border: solid 12px magenta;
 }
 
+
+
 #play {
-    margin-top: 100px;
+    margin-top: 80px;
+    color: magenta
+}
+
+#feed, #nap {
+    color: magenta
 }
 
 
@@ -143,12 +156,14 @@ button {
 }
 input {
     font-family: 'Rock Salt', sans-serif;
+    text-align: center;
     width: 575px;
     height: 150px;
     border-radius: 10px;
     background-color: white;
     margin-top: 800px;
     margin-left: 200px;
+    
 }
 
 
@@ -170,7 +185,26 @@ input {
     height: 400px;
 }
 
-.character-itself {
+.luna-animation {
+    animation: swing 2s linear;
+}
+
+
+
+/* bounce
+// flash
+// pulse
+// rubberBand
+// shakeX
+// shakeY
+// headShake
+// swing
+// tada
+// wobble
+// jello
+// heartBeat */
+
+/* .character-itself {
     
     margin: 0 auto;
     margin-top: 35%;
@@ -185,18 +219,11 @@ input {
     border-radius: 50%; 
     
 
-}
+} */
 
 
 
 
-
-
-.eyes {
-    background-color: white;
-    width: 25%;
-    height: 25%;
-}
 
 
 
