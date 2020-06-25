@@ -22,6 +22,7 @@ const ageH3 = document.getElementById('age');
 const gameConsole = document.querySelector('.game-console');
 const animationScreen = document.querySelector('.animation-screen');
 // play buttons
+const gameButtons = document.querySelector('.buttons');
 const feedButton = document.getElementById('feed');
 const playButton = document.getElementById('play');
 const napButton = document.getElementById('nap');
@@ -34,6 +35,8 @@ let boredomIconsUL = document.getElementById('boredomStars');
 let sleepIconsUL = document.getElementById('sleepinessStars');
 // poop area
 const poops = document.querySelector('.poops');
+// beep 
+const beep = document.getElementById("beep");
 
 
 // ------------------------- Event Listeners ------------------------- //
@@ -76,7 +79,7 @@ function addBasicTamagotchiInfo() {
 
 // -------------------------  Timers ------------------------- //
 
-let time = 120; // 2min 
+let time = 60; // 2min 
 
 function startTimers() {
     const timer = setInterval(function () { 
@@ -95,10 +98,11 @@ function startTimers() {
         if (time > 0) { 
             time--;
             generateRandomNeedMessage();
+            playAudio();
         } else {
             clearInterval(needsTimer); 
         }
-        }, 10000) // generate a new need every 10 seconds
+        }, 20000) // generate a new need every 10 seconds
 
     const addRandomIconTimer = setInterval(function () { 
         if (time > 0) { 
@@ -108,7 +112,7 @@ function startTimers() {
         else {
             clearInterval(addRandomIconTimer); 
         }
-        }, 10000) // remove a random star every 10 seconds
+        }, 7000) // add a random stat every 7 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -130,7 +134,7 @@ function startTimers() {
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 10000) //  add one year to age every 10 seconds
+        }, 10000) //  add one year to age every 10 seconds, make this proportional to game play time, and then chaneg the evolve times 
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -140,7 +144,8 @@ function startTimers() {
             dieOfOldAge();
             clearInterval(dieOfOldAgeTimer); 
         }
-        }, 120000) // die after 2min  
+        
+        }, 60000) // this should be equal to the gameplay time 
 }; 
 
 // -------------------------  Random Need Generator ------------------------- //
@@ -149,7 +154,6 @@ function generateRandomNeedMessage () {
     const randomNumber = Math.floor(Math.random()*3);  
     const randomNeed = tamagotchi.needs[randomNumber];
     console.log(`Tamagotchi needs ${randomNeed}`);
-    // make an animation that says something about being needy
 }; 
 
 // ------------------------- Update Age ------------------------- //
@@ -165,7 +169,7 @@ function poop() {
     poop.classList = 'made-some-poops';
     poop.setAttribute('src', 'https://cdn.theatlantic.com/thumbor/_Je_YnGbWz6w4aolQWyuTyl05FE=/0x250:4874x2992/720x405/media/img/mt/2018/02/GettyImages_916017408/original.jpg');
     poops.appendChild(poop);
-    if (poops.children.length > 1) {
+    if (poops.children.length > 3) {
         alert('clean poop by clicking on it');
     }
 };
@@ -211,11 +215,22 @@ function addRandomIcon() {
         addSleepIcon();
 
 };
+
+// -------------------------  Remove Buttons from GamePlay ------------------------- //
+
+function removeGameButtons () {
+    gameButtons.removeChild(feedButton);
+    gameButtons.removeChild(playButton);
+    gameButtons.removeChild(napButton);
+}; 
+
 // -------------------------  Die of Old Age  ------------------------- //
 
 function dieOfOldAge() {
-    console.log('he died of natural causes')
-    // clear the screen, game over
+    animationScreen.src = "gifs/ghost.gif";
+    removeGameButtons();
+    alert('your tamagotchi passed away of natural causes due to old age');
+
 };
 
 // -------------------------  Die of Neglect  ------------------------- //
@@ -227,8 +242,9 @@ function dieOfNeglect() {
     let sleepIconsULength = sleepIconsUL.children.length;
 
     if (hungerIconsULength > 9 || boredomIconsULength > 9 || sleepIconsULength > 9) {
-        console.log('died');
+        animationScreen.src = "gifs/ghost.gif";
         time = 0;
+        removeGameButtons();
         alert('you neglected your tamagotchi so he died');
     } else {
         return;
@@ -258,7 +274,7 @@ function evolve () {
 let eggHatchTime = 1;
 
 function hatchEgg () {
-
+    
     const hatchEggTimer = setInterval(function () { 
         if (eggHatchTime > 0) { 
             eggHatchTime--;          
@@ -267,17 +283,8 @@ function hatchEgg () {
             clearInterval(hatchEggTimer); 
             animationScreen.src = "gifs/baby.gif";
         }
-        }, 5000) // log every 5 seconds
-
+        }, 7000) // log every 5 seconds
 };
-
-
-
-
-
-
-
-
 
 // -------------------------  Evolve to Teenager  ------------------------- //
 let levelUpTimeTeenager = 2;
@@ -313,3 +320,41 @@ function levelupAdult () {
         }, 6000) // log every 3 seconds
 
 };
+
+
+// ===================================== Audio  =====================================//
+
+// ------------------------- Play Beep ------------------------- //
+
+function playAudio() {
+    beep.play();
+  };
+
+// ------------------------- Pause Beep ------------------------- //
+
+// function pauseAudio(event) {
+//     if (event.target.classList.contains('.buttons')) {
+//         beepTime = 0;
+//         clearInterval(beepTimer); 
+//         }
+// };
+
+// feedButton.addEventListener('click', pauseAudio);
+// playButton.addEventListener('click', pauseAudio);
+// napButton.addEventListener('click', pauseAudio);
+
+
+// // ------------------------- Beep Beep Interval ------------------------- //
+
+// let beepTime = 10; // will beep for 5 seconds unless otherwise 
+
+// function startBeeping () {
+//     const beepTimer = setInterval(function () { 
+//         if (time > 0) { 
+//             time--;
+//             playAudio();
+//         } else {
+//             clearInterval(beepTimer); 
+//         }
+//         }, 3000) // beeps every 3 seconds 
+//  };

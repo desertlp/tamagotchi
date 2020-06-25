@@ -39,17 +39,19 @@ h1 {
     width: 850px;
     height: 900px;
     margin: 450px auto 150px;
+    border: solid 12px magenta;
+    border-radius: 3%;
+
+
 }
 
 .creature-image {
-    background-color: gray;
     width: 600px;
     height: 400px;
     margin: 0 auto;
-    
 }
 
-.creature-image img{
+.creature-image img {
     width: 600px;
     height: 400px;
 }
@@ -86,6 +88,7 @@ button {
     height: 150px;
     border-radius: 75px;
     background-color: yellow;
+    border: solid 12px magenta;
 }
 
 #play {
