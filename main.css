@@ -31,6 +31,8 @@ h1 {
     background-image: url("https://lh3.googleusercontent.com/QaktYoMchoPhK589ChSwvZ3gGqqLH2g3lhlYmj3JntLvZ79hc3mL7npOCcJC22WN9g4");
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     margin: 0 auto;
+    animation: bounce; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 2s; /* don't forget to set a duration! */
 }
 
 
@@ -123,6 +125,7 @@ button {
     border-radius: 10px;
     background-color: hotpink;
     margin-top: 800px;
+    transition: transform 1s ease-in-out;
     
 
 
@@ -135,7 +138,6 @@ input {
     background-color: white;
     margin-top: 800px;
     margin-left: 200px;
-    
 
 }
 
@@ -145,3 +147,20 @@ body.initial-hide .screen, body.initial-hide .buttons  {
 }
 
 
+h4 {
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    position: absolute;
+    bottom: 0;
+    opacity:80%;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 400px;
+    color: blue;
+    visibility: visible;
+    opacity: 0;
+    transition: opacity 6s linear;
+    animation: flash;
+    animation-duration: 6s; /* don't forget to set a duration! */
+
+ 
+}

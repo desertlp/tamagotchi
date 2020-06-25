@@ -3,7 +3,7 @@
 const tamagotchi = {
     name: '', // from the prompt 
     age: 0,
-    needs: ['food', 'playtime', 'sleep'],
+    needs: ['is hungry!!!!', 'wants to play!!!!', 'says it is nap time...'],
     evolution: 'Egg',
     evolve () {
         // evolves when all star bars reach 5 at the same time 
@@ -46,6 +46,7 @@ feedButton.addEventListener('click', removeHungerIcon);
 playButton.addEventListener('click', removeBoredomIcon);
 napButton.addEventListener('click', removeSleepIcon);
 poops.addEventListener('click', cleanPoop);
+
 
 // ------------------------- Interactive Button Functionality ------------------------- //
 
@@ -99,10 +100,13 @@ function startTimers() {
             time--;
             generateRandomNeedMessage();
             playAudio();
+            gameConsole.removeChild(randomNeedCallOut);
+        
         } else {
+        
             clearInterval(needsTimer); 
         }
-        }, 20000) // generate a new need every 10 seconds
+        }, 5000) // generate a new need every 10 seconds
 
     const addRandomIconTimer = setInterval(function () { 
         if (time > 0) { 
@@ -150,11 +154,20 @@ function startTimers() {
 
 // -------------------------  Random Need Generator ------------------------- //
 
+
 function generateRandomNeedMessage () {
     const randomNumber = Math.floor(Math.random()*3);  
-    const randomNeed = tamagotchi.needs[randomNumber];
+    const randomNeed = tamagotchi.needs[randomNumber];    
+    const randomNeedCallOut = document.createElement('h4');
+    randomNeedCallOut.innerText = `${tamagotchi.name} ${randomNeed}`;
+    gameConsole.appendChild(randomNeedCallOut);
     console.log(`Tamagotchi needs ${randomNeed}`);
+
 }; 
+
+function removeOldRandomNeedMessage
+
+
 
 // ------------------------- Update Age ------------------------- //
 
