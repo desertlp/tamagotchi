@@ -167,7 +167,7 @@ function updateAge () {
 function poop() {
     const poop = document.createElement('img');
     poop.classList = 'made-some-poops';
-    poop.setAttribute('src', 'https://cdn.theatlantic.com/thumbor/_Je_YnGbWz6w4aolQWyuTyl05FE=/0x250:4874x2992/720x405/media/img/mt/2018/02/GettyImages_916017408/original.jpg');
+    poop.setAttribute('src', 'poop.png');
     poops.appendChild(poop);
     if (poops.children.length > 3) {
         alert('clean poop by clicking on it');

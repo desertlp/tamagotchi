@@ -46,6 +46,9 @@ h1 {
 }
 
 .creature-image {
+    
+    position: relative;
+    display: absolute;
     width: 600px;
     height: 400px;
     margin: 0 auto;
@@ -54,6 +57,21 @@ h1 {
 .creature-image img {
     width: 600px;
     height: 400px;
+}
+
+.poops {
+  
+    position: absolute;
+    bottom: 0;
+    opacity:80%;
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 400px;
+}
+.made-some-poops {
+    position: absolute;
+    bottom: 0;
+    flex-shrink: 3;
 }
 
 .stats {
@@ -122,12 +140,8 @@ input {
 }
 
 
-
-
-
-
-
 body.initial-hide .screen, body.initial-hide .buttons  {
     display: none;
 }
+
 
