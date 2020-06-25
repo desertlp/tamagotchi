@@ -3,7 +3,7 @@
 const tamagotchi = {
     name: '', // from the prompt 
     age: 0,
-    needs: ['food', 'playtime', 'sleep'],
+    needs: ['is hungry!!!!', 'wants to play!!!!', 'says it is nap time...'],
     evolution: 'Egg',
     evolve () {
         // evolves when all star bars reach 5 at the same time 
@@ -11,7 +11,6 @@ const tamagotchi = {
 };
 
 // ------------------------- Cached DOM Elements ------------------------- //
-
 // start button
 const startButton = document.querySelector('#start-button');
 const userInputName = document.querySelector('input'); 
@@ -21,7 +20,9 @@ const ageH3 = document.getElementById('age');
 //const evolutionH3 = document.getElementById('evolution');
 // game console
 const gameConsole = document.querySelector('.game-console');
+const animationScreen = document.querySelector('.animation-screen');
 // play buttons
+const gameButtons = document.querySelector('.buttons');
 const feedButton = document.getElementById('feed');
 const playButton = document.getElementById('play');
 const napButton = document.getElementById('nap');
@@ -34,6 +35,12 @@ let boredomIconsUL = document.getElementById('boredomStars');
 let sleepIconsUL = document.getElementById('sleepinessStars');
 // poop area
 const poops = document.querySelector('.poops');
+// beep 
+const beep = document.getElementById("beep");
+
+const blob = document.createElement('div');
+blob.id = `tamagotchi-creature`;
+gameConsole.insertBefore(blob, gameConsole.childNodes[0]);
 
 
 // ------------------------- Event Listeners ------------------------- //
@@ -43,6 +50,7 @@ feedButton.addEventListener('click', removeHungerIcon);
 playButton.addEventListener('click', removeBoredomIcon);
 napButton.addEventListener('click', removeSleepIcon);
 poops.addEventListener('click', cleanPoop);
+
 
 // ------------------------- Interactive Button Functionality ------------------------- //
 
@@ -64,19 +72,19 @@ function removeSleepIcon () {
 // ------------------------- Start Game ------------------------- //
 
 function addBasicTamagotchiInfo() {
+    document.querySelector('.initial-hide').classList.remove('initial-hide');
     const userInputNameValue = document.querySelector('input').value;    
     nameH3.innerText = `${userInputNameValue}`;
     gameConsole.removeChild(startButton);
     gameConsole.removeChild(userInputName);
     ageH3.innerText = `Age: ${tamagotchi.age}`; 
-    // hatch egg animation
-    // evolutionH3.innerText = `Evolution: ${tamagotchi.evolution}`;
-    startTimers();
+    hatchEgg();
+    setTimeout(startTimers, 5000);
 }; 
 
 // -------------------------  Timers ------------------------- //
 
-let time = 120; // 2min 
+let time = 60; // 2min 
 
 function startTimers() {
     const timer = setInterval(function () { 
@@ -95,10 +103,11 @@ function startTimers() {
         if (time > 0) { 
             time--;
             generateRandomNeedMessage();
+            // playAudio();        
         } else {
             clearInterval(needsTimer); 
         }
-        }, 10000) // generate a new need every 10 seconds
+        }, 5000) // generate a new need every 10 seconds
 
     const addRandomIconTimer = setInterval(function () { 
         if (time > 0) { 
@@ -108,7 +117,7 @@ function startTimers() {
         else {
             clearInterval(addRandomIconTimer); 
         }
-        }, 1000) // remove a random star every 5 seconds
+        }, 7000) // add a random stat every 7 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -130,7 +139,7 @@ function startTimers() {
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 30000) //  add one year to age every 30 seconds
+        }, 10000) //  add one year to age every 10 seconds, make this proportional to game play time, and then chaneg the evolve times 
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -140,16 +149,17 @@ function startTimers() {
             dieOfOldAge();
             clearInterval(dieOfOldAgeTimer); 
         }
-        }, 120000) // die after 2min  
+        
+        }, 60000) // this should be equal to the gameplay time 
 }; 
 
 // -------------------------  Random Need Generator ------------------------- //
 
 function generateRandomNeedMessage () {
     const randomNumber = Math.floor(Math.random()*3);  
-    const randomNeed = tamagotchi.needs[randomNumber];
+    const randomNeed = tamagotchi.needs[randomNumber];    
+    randomNeedCallOut.innerText = `${tamagotchi.name} ${randomNeed}`;
     console.log(`Tamagotchi needs ${randomNeed}`);
-    // make an animation that says something about being needy
 }; 
 
 // ------------------------- Update Age ------------------------- //
@@ -163,9 +173,9 @@ function updateAge () {
 function poop() {
     const poop = document.createElement('img');
     poop.classList = 'made-some-poops';
-    poop.setAttribute('src', 'https://cdn.theatlantic.com/thumbor/_Je_YnGbWz6w4aolQWyuTyl05FE=/0x250:4874x2992/720x405/media/img/mt/2018/02/GettyImages_916017408/original.jpg');
+    poop.setAttribute('src', 'poop.png');
     poops.appendChild(poop);
-    if (poops.children.length > 1) {
+    if (poops.children.length > 3) {
         alert('clean poop by clicking on it');
     }
 };
@@ -211,11 +221,22 @@ function addRandomIcon() {
         addSleepIcon();
 
 };
+
+// -------------------------  Remove Buttons from GamePlay ------------------------- //
+
+function removeGameButtons () {
+    gameButtons.removeChild(feedButton);
+    gameButtons.removeChild(playButton);
+    gameButtons.removeChild(napButton);
+}; 
+
 // -------------------------  Die of Old Age  ------------------------- //
 
 function dieOfOldAge() {
-    console.log('he died of natural causes')
-    // clear the screen, game over
+    animationScreen.src = "gifs/ghost.gif";
+    removeGameButtons();
+    alert('your tamagotchi passed away of natural causes due to old age');
+
 };
 
 // -------------------------  Die of Neglect  ------------------------- //
@@ -227,8 +248,9 @@ function dieOfNeglect() {
     let sleepIconsULength = sleepIconsUL.children.length;
 
     if (hungerIconsULength > 9 || boredomIconsULength > 9 || sleepIconsULength > 9) {
-        console.log('died');
+        animationScreen.src = "gifs/ghost.gif";
         time = 0;
+        removeGameButtons();
         alert('you neglected your tamagotchi so he died');
     } else {
         return;
@@ -241,22 +263,104 @@ function evolve () {
 
     let currentAge = tamagotchi.age;
 
-    if (currentAge > 5) {
-        alert('Evolution: Adult');
-        // animation to adult 
+    if (currentAge > 5) { // adult
+        levelupAdult ();
         // display new adult tamagotchi image
-    } else if (currentAge < 3) {
-        alert(`Evolution: Baby`);
-         // animation to Baby from egg on start 
-            // display new baby tamagotchi image
+    } else if (currentAge < 3) { // baby
+        // display baby tamagotchi image
+    } else // teenager
+        levelupTeenager(); 
+        // display teenager tamagotchi image
+};
 
-    } else
-        alert(`Evolution: Teenager`);
-          // animation to Baby 
-        // display new baby tamagotchi image
+// ===================================== Evolve Animations =====================================//
+
+// -------------------------  Hatch ------------------------- //
+
+let eggHatchTime = 1;
+
+function hatchEgg () {
+    
+    const hatchEggTimer = setInterval(function () { 
+        if (eggHatchTime > 0) { 
+            eggHatchTime--;          
+            animationScreen.src = "gifs/hatch.gif";
+        } else {
+            clearInterval(hatchEggTimer); 
+            animationScreen.src = "gifs/baby.gif";
+        }
+        }, 7000) // log every 5 seconds
+};
+
+// -------------------------  Evolve to Teenager  ------------------------- //
+let levelUpTimeTeenager = 2;
+
+function levelupTeenager () {
+
+    const levelUpTimerTeenager = setInterval(function () { 
+        if (levelUpTimeTeenager > 0) { 
+            levelUpTimeTeenager--;          
+            animationScreen.src = "gifs/levelup.gif";
+        } else {
+            clearInterval(levelUpTimerTeenager); 
+            animationScreen.src = "gifs/teenage.gif";
+        }
+        }, 6000) // log every 3 seconds
 
 };
 
-// -------------------------  Animations ------------------------- //
+// -------------------------  Evolve to Adult  ------------------------- //
+
+let levelUpTimeAdult = 2;
+
+function levelupAdult () {
+
+    const levelUpTimerAdult= setInterval(function () { 
+        if (levelUpTimeAdult > 0) { 
+            levelUpTimeAdult--;          
+            animationScreen.src = "gifs/levelup.gif";
+        } else {
+            clearInterval(levelUpTimerAdult); 
+            animationScreen.src = "gifs/adult.gif";
+        }
+        }, 6000) // log every 3 seconds
+
+};
 
 
+// ===================================== Audio  =====================================//
+
+// ------------------------- Play Beep ------------------------- //
+
+function playAudio() {
+    beep.play();
+  };
+
+// ------------------------- Pause Beep ------------------------- //
+
+// function pauseAudio(event) {
+//     if (event.target.classList.contains('.buttons')) {
+//         beepTime = 0;
+//         clearInterval(beepTimer); 
+//         }
+// };
+
+// feedButton.addEventListener('click', pauseAudio);
+// playButton.addEventListener('click', pauseAudio);
+// napButton.addEventListener('click', pauseAudio);
+
+
+// // ------------------------- Beep Beep Interval ------------------------- //
+
+// let beepTime = 10; // will beep for 5 seconds unless otherwise 
+
+// function startBeeping () {
+//     const beepTimer = setInterval(function () { 
+//         if (time > 0) { 
+//             time--;
+//             playAudio();
+//         } else {
+//             clearInterval(beepTimer); 
+//         }
+//         }, 3000) // beeps every 3 seconds 
+//  };

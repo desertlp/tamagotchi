@@ -20,7 +20,7 @@ const ageH3 = document.getElementById('age');
 //const evolutionH3 = document.getElementById('evolution');
 // game console
 const gameConsole = document.querySelector('.game-console');
-const animationScreen = document.querySelector('.animation-screen');
+const gifsScreen = document.querySelector('.gifs');
 // play buttons
 const gameButtons = document.querySelector('.buttons');
 const feedButton = document.getElementById('feed');
@@ -98,12 +98,9 @@ function startTimers() {
     const needsTimer = setInterval(function () { 
         if (time > 0) { 
             time--;
-            generateRandomNeedMessage();
-            playAudio();
-            gameConsole.removeChild(randomNeedCallOut);
-        
+            //generateRandomNeedMessage();
+            playAudio();        
         } else {
-        
             clearInterval(needsTimer); 
         }
         }, 5000) // generate a new need every 10 seconds
@@ -154,20 +151,12 @@ function startTimers() {
 
 // -------------------------  Random Need Generator ------------------------- //
 
-
-function generateRandomNeedMessage () {
-    const randomNumber = Math.floor(Math.random()*3);  
-    const randomNeed = tamagotchi.needs[randomNumber];    
-    const randomNeedCallOut = document.createElement('h4');
-    randomNeedCallOut.innerText = `${tamagotchi.name} ${randomNeed}`;
-    gameConsole.appendChild(randomNeedCallOut);
-    console.log(`Tamagotchi needs ${randomNeed}`);
-
-}; 
-
-function removeOldRandomNeedMessage
-
-
+// function generateRandomNeedMessage () {
+//     const randomNumber = Math.floor(Math.random()*3);  
+//     const randomNeed = tamagotchi.needs[randomNumber];    
+//     randomNeedCallOut.innerText = `${tamagotchi.name} ${randomNeed}`;
+//     console.log(`Tamagotchi needs ${randomNeed}`);
+// }; 
 
 // ------------------------- Update Age ------------------------- //
 
@@ -240,7 +229,7 @@ function removeGameButtons () {
 // -------------------------  Die of Old Age  ------------------------- //
 
 function dieOfOldAge() {
-    animationScreen.src = "gifs/ghost.gif";
+    gifsScreen.src = "gifs/ghost.gif";
     removeGameButtons();
     alert('your tamagotchi passed away of natural causes due to old age');
 
@@ -255,7 +244,7 @@ function dieOfNeglect() {
     let sleepIconsULength = sleepIconsUL.children.length;
 
     if (hungerIconsULength > 9 || boredomIconsULength > 9 || sleepIconsULength > 9) {
-        animationScreen.src = "gifs/ghost.gif";
+        gifsScreen.src = "gifs/ghost.gif";
         time = 0;
         removeGameButtons();
         alert('you neglected your tamagotchi so he died');
@@ -291,10 +280,10 @@ function hatchEgg () {
     const hatchEggTimer = setInterval(function () { 
         if (eggHatchTime > 0) { 
             eggHatchTime--;          
-            animationScreen.src = "gifs/hatch.gif";
+            gifsScreen.src = "gifs/hatch.gif";
         } else {
             clearInterval(hatchEggTimer); 
-            animationScreen.src = "gifs/baby.gif";
+            gifsScreen.src = "gifs/baby.gif";
         }
         }, 7000) // log every 5 seconds
 };
@@ -307,10 +296,10 @@ function levelupTeenager () {
     const levelUpTimerTeenager = setInterval(function () { 
         if (levelUpTimeTeenager > 0) { 
             levelUpTimeTeenager--;          
-            animationScreen.src = "gifs/levelup.gif";
+            gifsScreen.src = "gifs/levelup.gif";
         } else {
             clearInterval(levelUpTimerTeenager); 
-            animationScreen.src = "gifs/teenage.gif";
+            gifsScreen.src = "gifs/teenage.gif";
         }
         }, 6000) // log every 3 seconds
 
@@ -325,10 +314,10 @@ function levelupAdult () {
     const levelUpTimerAdult= setInterval(function () { 
         if (levelUpTimeAdult > 0) { 
             levelUpTimeAdult--;          
-            animationScreen.src = "gifs/levelup.gif";
+            gifsScreen.src = "gifs/levelup.gif";
         } else {
             clearInterval(levelUpTimerAdult); 
-            animationScreen.src = "gifs/adult.gif";
+            gifsScreen.src = "gifs/adult.gif";
         }
         }, 6000) // log every 3 seconds
 
