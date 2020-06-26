@@ -67,7 +67,7 @@ Happy gaming, Sailors.
 //         }, 3000) // beeps every 3 seconds 
 //  };
 
-// -------------------------  Random Need Generator ------------------------- //
+// -------------------------  Evolve Function Bug ------------------------- //
 
 // function generateRandomNeedMessage () {
 //     const randomNumber = Math.floor(Math.random()*3);  
