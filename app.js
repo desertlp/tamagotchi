@@ -89,7 +89,7 @@ function startTimers() {
     const needsTimer = setInterval(function () { 
         if (time > 0) { 
             time--;
-            playAudio();        
+            // playAudio();        
         } else {
             clearInterval(needsTimer); 
         }
@@ -125,7 +125,7 @@ function startTimers() {
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 30000) //  add one year to age every 30 seconds, make this proportional to game play time, and then chaneg the evolve times 
+        }, 20000) //  add one year to age every 30 seconds, make this proportional to game play time, and then chaneg the evolve times 
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
