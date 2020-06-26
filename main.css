@@ -1,5 +1,5 @@
 html {
-    background-image: url('https://pbs.twimg.com/media/D3zSuzDWwAoFDOd?format=jpg&name=large');
+    background-image: url('tokyo.jpeg');
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -14,12 +14,11 @@ body.initial-hide .screen, body.initial-hide .buttons  {
 body {
     font-family: 'Rock Salt', sans-serif;
     display: flex;
-    flex-direction: column;
-    
+    flex-direction: column; 
 }
 
 h1 {
-    font-size: 100px;
+    font-size: 90px;
     width: 1100px;
     align-self: flex-end;
     margin-top: 300px;
@@ -37,15 +36,11 @@ h1 {
 
 .game-console {
     position: relative;
-    /* display: block; */
     width: 1350px;
     height: 1855px;
-    /* background-image: url("https://lh3.googleusercontent.com/QaktYoMchoPhK589ChSwvZ3gGqqLH2g3lhlYmj3JntLvZ79hc3mL7npOCcJC22WN9g4"); */
     border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
     margin: 0 auto;
     background: radial-gradient(circle at 100px 100px, blue, #000);
-    /* animation: bounce; 
-    animation-duration: 2s; don't forget to set a duration! */
 }
 
 
@@ -56,41 +51,6 @@ h1 {
     margin: 450px auto 150px;
     border: solid 12px magenta;
     border-radius: 3%;
-
-
-}
-
-/* .animation-screen {
-    
-    position: relative;
-    width: 600px;
-    height: 400px;
-    margin: 0 auto;
-}
-
-.animation-screen img {
-    width: 600px;
-    height: 400px;
-} */
-
-.poops {
-    
-    position: absolute;
-    bottom: 0;
-    opacity:80%;
-    display: flex;
-    flex-wrap: wrap;
-    max-height: 400px;
-    animation: heartBeat 2s linear;
-    z-index: 20;
-}
-.made-some-poops {
-    position: absolute;
-    bottom: 0;
-    flex-shrink: 3;
-    animation: heartBeat 2s linear;
-    z-index: 20;
-
 }
 
 .stats {
@@ -107,11 +67,9 @@ ul {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-
 }
 
 .buttons {
-    /*padding-left: 34%;*/
     width: 70%;
     margin: 0 auto;
     display: flex;
@@ -121,15 +79,12 @@ ul {
 }
 
 button {
-    
     width: 150px;
     height: 150px;
     border-radius: 75px;
     background-color: rgb(253, 221, 102);
     border: solid 12px magenta;
 }
-
-
 
 #play {
     margin-top: 80px;
@@ -139,7 +94,6 @@ button {
 #feed, #nap {
     color: magenta
 }
-
 
 #start-button {
     font-family: 'Rock Salt', sans-serif;
@@ -152,6 +106,7 @@ button {
     margin-top: 800px;
     transition: transform 1s ease-in-out;
 }
+
 input {
     font-family: 'Rock Salt', sans-serif;
     text-align: center;
@@ -160,14 +115,10 @@ input {
     border-radius: 10px;
     background-color: white;
     margin-top: 800px;
-    margin-left: 200px;
-    
+    margin-left: 200px;  
 }
 
-
-
 .animation-screen {
-    
     position: relative;
     width: 600px;
     height: 400px;
@@ -187,9 +138,7 @@ input {
     animation: swing 2s linear;
 }
 
-
 .gif { 
-
     position: absolute;
     left: 220px;
     bottom: 495px;
@@ -200,59 +149,19 @@ input {
     animation: fade-out 5s linear; 
 }
 
-/* bounce
-// flash
-// pulse
-// rubberBand
-// shakeX
-// shakeY
-// headShake
-// swing
-// tada
-// wobble
-// jello
-// heartBeat */
+.made-some-poops {
+    width: 700px; 
+    height: 800px;
+    animation: heartBeat 2s linear;
+}
 
-/* .character-itself {
-    
-    margin: 0 auto;
-    margin-top: 35%;
-    animation: bounce 4s infinite linear;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: radial-gradient(circle at 100px 100px, hotpink, #000);
-    width: 150px;
-    height: 150px;
-    border-radius: 50%; 
-    
-
-} */
-
-
-
-
-
-
-
-
+.poops {
+    position: absolute;
+    left: 300px;
+    bottom: 500px;
+    z-index: 40;
+}
 
 .gif {
     position: absolute;
 }
-
-/* .poops {
-  
-    position: absolute;
-    bottom: 0;
-    opacity:80%;
-    display: flex;
-    flex-wrap: wrap;
-    max-height: 100px;
-}
-.made-some-poops {
-    position: absolute;
-    bottom: 0;
-    flex-shrink: 3;
-} */
