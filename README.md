@@ -1,3 +1,5 @@
+GAMEPLAY: 
+
 Welcome to Sailor Moon Tamagotchi. Inspired by the beloved games and shows of the nineties. 
 
 On load, you will see the iconic tamagotchi egg ready to accept a name of your choosing. Input your name and click start to begin playing the game. Upon clicking start, an animation of Luna, Sailor V's beloved intergalatic cat, appears, showcasing her adoption day and the start of your adoption of your new Tamagotchi. 
@@ -17,25 +19,24 @@ Happy gaming, Sailors.
 
 
 
+PROUD OF: 
+
+Random Animations 
+Beep
+poop/cleanPoop functions (Sailor V appears)
 
 
 
 
+NEXT STEPS: 
+
+Give Luna a body or bow on third evolution. 
+Create demo mode
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-////////////////// Challenge Code ////////////////
+CHALLENGES: 
 
 
 // ------------------------- Pause Beep ------------------------- //
@@ -52,7 +53,7 @@ Happy gaming, Sailors.
 // napButton.addEventListener('click', pauseAudio);
 
 
-// // ------------------------- Beep Beep Interval ------------------------- //
+ORRRRR      Beep Interval 
 
 // let beepTime = 10; // will beep for 5 seconds unless otherwise 
 
