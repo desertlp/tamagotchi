@@ -28,6 +28,11 @@ poop/cleanPoop functions (Sailor V appears)
 
 
 
+OUTSIDE SOURCES: 
+Luna - https://codepen.io/giuliacardieri/pen/oLvxjK
+
+
+
 NEXT STEPS: 
 
 Give Luna a body or bow on third evolution. 
