@@ -85,7 +85,7 @@ function addBasicTamagotchiInfo() {
 
 // -------------------------  Timers ------------------------- //
 
-let time = 120; // 2min 
+let time = 60; // 2min 
 
 function startTimers() {
     const timer = setInterval(function () { 
@@ -107,7 +107,7 @@ function startTimers() {
         } else {
             clearInterval(needsTimer); 
         }
-        }, 50000) // generate a new need every 10 seconds
+        }, 30000) // generate a new need every 10 seconds
 
     const addRandomIconTimer = setInterval(function () { 
         if (time > 0) { 
@@ -117,7 +117,7 @@ function startTimers() {
         else {
             clearInterval(addRandomIconTimer); 
         }
-        }, 10000) // add a random stat every 7 seconds
+        }, 1000) // add a random stat every 7 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -127,7 +127,7 @@ function startTimers() {
         else {
             clearInterval(poopTimer); 
         }
-        }, 100000) // poop every 10 second        
+        }, 10000) // poop every 10 second        
      
     const bithdayTimer = setInterval(function () { 
         if (time > 0) { 
@@ -139,7 +139,7 @@ function startTimers() {
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 100000) //  add one year to age every 10 seconds, make this proportional to game play time, and then chaneg the evolve times 
+        }, 10000) //  add one year to age every 10 seconds, make this proportional to game play time, and then chaneg the evolve times 
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -150,7 +150,7 @@ function startTimers() {
             clearInterval(dieOfOldAgeTimer); 
         }
         
-        }, 60000) // this should be equal to the gameplay time 
+        }, 100000) // this should be equal to the gameplay time 
 }; 
 
 
@@ -165,7 +165,7 @@ function updateAge () {
 function poop() {
     const poop = document.createElement('img');
     poop.classList = 'made-some-poops';
-    poop.setAttribute('src', 'poop.png');
+    poop.setAttribute('src', 'hipclipart.com/png');
     poops.appendChild(poop);
 };
 
@@ -223,7 +223,7 @@ function removeGameButtons () {
 
 function die() {
     const deadGif  = document.createElement('img');
-    deadGif.setAttribute('src', "gifs/ghost.gif");
+    deadGif.setAttribute('src', "gifs/lunasad.gif");
     deadGif.setAttribute('class', 'gif');
     gameConsole.insertBefore(deadGif, gameConsole[0]);
     time = 0;
@@ -263,35 +263,34 @@ function evolve () {
 
 // -------------------------  Hatch ------------------------- //
 
-let eggHatchTime = 1;
+let eggHatchTime = 1; // back to 1
 
 function hatchEgg () {
     const hatchGif  = document.createElement('img');
-    hatchGif.setAttribute('src', "gifs/hatch.gif");
+    hatchGif.setAttribute('src', "gifs/kitten.gif");
     hatchGif.setAttribute('class', 'gif');
     gameConsole.insertBefore(hatchGif, gameConsole[0]);
     
     const hatchEggTimer = setInterval(function () { 
         if (eggHatchTime > 0) { 
             eggHatchTime--;     
-            // const hatchGif  = createElement('img');
-            // hatchGif.setAttribute('src', "gifs/hatch.gif");
-
         } else {
             gameConsole.removeChild(hatchGif);
             clearInterval(hatchEggTimer); 
         }
-        }, 7000) // log every 5 seconds
+        }, 2000)
 };
 
 // -------------------------  Evolve to Teenager  ------------------------- //
-let levelUpTimeTeenager = 2;
+
+let levelUpTimeTeenager = 1;
 
 function levelupTeenager () {
 
     const levelUpGif  = document.createElement('img');
-    levelUpGif.setAttribute('src', "gifs/levelup.gif");
-    gameConsole.insertBefore(levelUpGif, gameConsole[1]);
+    levelUpGif.setAttribute('src', "gifs/sailortransform.gif");
+    levelUpGif.setAttribute('class', 'gif');
+    gameConsole.insertBefore(levelUpGif, gameConsole[0]);
     
     const levelUpTimerTeenager = setInterval(function () { 
         if (levelUpTimeTeenager > 0) { 
@@ -301,19 +300,19 @@ function levelupTeenager () {
             clearInterval(levelUpTimerTeenager); 
             gameConsole.removeChild(levelUpGif);
         }
-        }, 6000) // log every 3 seconds
+        }, 4800) // log every 3 seconds
 
 };
 
 // -------------------------  Evolve to Adult  ------------------------- //
 
-let levelUpTimeAdult = 2;
+let levelUpTimeAdult = 1;
 
 function levelupAdult () {
 
     const levelUpGif  = document.createElement('img');
-    levelUpGif.setAttribute('src', "gifs/levelup.gif");
-    gameConsole.insertBefore(levelUpGif, gameConsole[1]);
+    levelUpGif.setAttribute('src', "gifs/sailortransform.gif");
+    gameConsole.insertBefore(levelUpGif, gameConsole[0]);
 
     const levelUpTimerAdult= setInterval(function () { 
         if (levelUpTimeAdult > 0) { 
@@ -322,7 +321,7 @@ function levelupAdult () {
             clearInterval(levelUpTimerAdult); 
             gameConsole.removeChild(levelUpGif);
         }
-        }, 6000) // log every 3 seconds
+        }, 4800) // log every 3 seconds
 
 };
 

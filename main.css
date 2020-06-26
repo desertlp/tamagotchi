@@ -1,7 +1,4 @@
 html {
-    /* background-image: url("https://lh3.googleusercontent.com/QaktYoMchoPhK589ChSwvZ3gGqqLH2g3lhlYmj3JntLvZ79hc3mL7npOCcJC22WN9g4"); */
-    /* background-image: url('https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80)'); */
-    /* background-image: url('https://pbs.twimg.com/media/D3zSuzNXkAIYKFS?format=jpg&name=medium'); */
     background-image: url('https://pbs.twimg.com/media/D3zSuzDWwAoFDOd?format=jpg&name=large');
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -85,13 +82,14 @@ h1 {
     flex-wrap: wrap;
     max-height: 400px;
     animation: heartBeat 2s linear;
+    z-index: 20;
 }
 .made-some-poops {
     position: absolute;
     bottom: 0;
     flex-shrink: 3;
     animation: heartBeat 2s linear;
-    
+    z-index: 20;
 
 }
 
@@ -190,6 +188,17 @@ input {
 }
 
 
+.gif { 
+
+    position: absolute;
+    left: 220px;
+    bottom: 495px;
+    z-index: 10;
+    width: 900px; 
+    height: 925px;
+    border-radius: 3%;
+    animation: fade-out 5s linear; 
+}
 
 /* bounce
 // flash
