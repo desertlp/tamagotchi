@@ -11,3 +11,79 @@ As Luna ages, she will evolve, once at age 3 and once again at 6, if you have su
 Keep taking care of Luna until time eventually takes our poor kitty away, into the stars of the Milky Way, due to natural causes associated with old age. 
 
 Happy gaming, Sailors. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////// Challenge Code ////////////////
+
+
+// ------------------------- Pause Beep ------------------------- //
+
+// function pauseAudio(event) {
+//     if (event.target.classList.contains('.buttons')) {
+//         beepTime = 0;
+//         clearInterval(beepTimer); 
+//         }
+// };
+
+// feedButton.addEventListener('click', pauseAudio);
+// playButton.addEventListener('click', pauseAudio);
+// napButton.addEventListener('click', pauseAudio);
+
+
+// // ------------------------- Beep Beep Interval ------------------------- //
+
+// let beepTime = 10; // will beep for 5 seconds unless otherwise 
+
+// function startBeeping () {
+//     const beepTimer = setInterval(function () { 
+//         if (time > 0) { 
+//             time--;
+//             playAudio();
+//         } else {
+//             clearInterval(beepTimer); 
+//         }
+//         }, 3000) // beeps every 3 seconds 
+//  };
+
+// -------------------------  Random Need Generator ------------------------- //
+
+// function generateRandomNeedMessage () {
+//     const randomNumber = Math.floor(Math.random()*3);  
+//     const randomNeed = tamagotchi.needs[randomNumber];    
+//     randomNeedCallOut.innerText = `${tamagotchi.name} ${randomNeed}`;
+//     console.log(`Tamagotchi needs ${randomNeed}`);
+// }; 
+
+/ function evolve () {    
+
+//     let currentAge = tamagotchi.age;
+
+//     if (currentAge > 5) { // adult
+//         levelupAdult ();
+//         lunaMoon.style.backgroundColor = '#e8bb54';
+//     } else if (currentAge < 4) { // baby
+//     } else // teenager
+//         levelupTeenager(); 
+// };

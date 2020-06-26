@@ -103,7 +103,7 @@ function startTimers() {
         else {
             clearInterval(addRandomIconTimer); 
         }
-        }, 5000) // add a random stat every 5 seconds
+        }, 2000) // add a random stat every 20 seconds
        
     const poopTimer = setInterval(function () { 
         if (time > 0) { 
@@ -125,7 +125,7 @@ function startTimers() {
         else {
             clearInterval(bithdayTimer); 
         }
-        }, 40000) //  add one year to age every 30 seconds, make this proportional to game play time, and then chaneg the evolve times 
+        }, 15000) //  add one year to age every 30 seconds, make this proportional to game play time, and then chaneg the evolve times 
             
     const dieOfOldAgeTimer = setInterval(function () { 
         if (time > 0) { 
@@ -236,15 +236,14 @@ function dieOfNeglect() {
 
 function evolve () {    
 
-    let currentAge = tamagotchi.age;
-
-    if (currentAge > 5) { // adult
-        levelupAdult ();
-        lunaMoon.style.backgroundColor = '#e8bb54';
-    } else if (currentAge < 3) { // baby
-    } else // teenager
-        levelupTeenager(); 
-};
+        let currentAge = tamagotchi.age;
+    
+        if (currentAge > 4) { // adult
+            levelupTeenager(); 
+            lunaMoon.style.backgroundColor = '#e8bb54';
+        } else // teenager
+            return;
+    };
 
 // =====================================  Animations =====================================//
 
@@ -265,7 +264,7 @@ function hatchEgg () {
             gameConsole.removeChild(hatchGif);
             clearInterval(hatchEggTimer); 
         }
-        }, 2000)
+        }, 2000) // time to lapse gif
 };
 
 // -------------------------  Evolve to Teenager  ------------------------- //
@@ -286,6 +285,7 @@ function levelupTeenager () {
         } else {
             clearInterval(levelUpTimerTeenager); 
             gameConsole.removeChild(levelUpGif);
+            levelUpTimeTeenager = 0;   
         }
         }, 4800) // log every 3 seconds
 
@@ -321,45 +321,7 @@ function playAudio() {
     beep.play();
   };
 
-// ------------------------- Pause Beep ------------------------- //
-
-// function pauseAudio(event) {
-//     if (event.target.classList.contains('.buttons')) {
-//         beepTime = 0;
-//         clearInterval(beepTimer); 
-//         }
-// };
-
-// feedButton.addEventListener('click', pauseAudio);
-// playButton.addEventListener('click', pauseAudio);
-// napButton.addEventListener('click', pauseAudio);
-
-
-// // ------------------------- Beep Beep Interval ------------------------- //
-
-// let beepTime = 10; // will beep for 5 seconds unless otherwise 
-
-// function startBeeping () {
-//     const beepTimer = setInterval(function () { 
-//         if (time > 0) { 
-//             time--;
-//             playAudio();
-//         } else {
-//             clearInterval(beepTimer); 
-//         }
-//         }, 3000) // beeps every 3 seconds 
-//  };
-
-// -------------------------  Random Need Generator ------------------------- //
-
-// function generateRandomNeedMessage () {
-//     const randomNumber = Math.floor(Math.random()*3);  
-//     const randomNeed = tamagotchi.needs[randomNumber];    
-//     randomNeedCallOut.innerText = `${tamagotchi.name} ${randomNeed}`;
-//     console.log(`Tamagotchi needs ${randomNeed}`);
-// }; 
-
-// -------------------------  Animate Luna ------------------------- //
+  // -------------------------  Animate Luna ------------------------- //
 
 function animateLuna() {
     const randomNumber = Math.floor(Math.random()*tamagotchi.animations.length);  
